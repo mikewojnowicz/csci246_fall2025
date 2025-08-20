@@ -1,0 +1,59 @@
+
+%%% SETTER
+
+\newcommand{\myDefaultPageColor}{white}
+\newcommand{\myDefaultTextColor}{black}
+
+
+%%% COLORS
+\newcommand{\blue}[1]{\color{blue}{#1}  \color{\myDefaultTextColor}}
+\newcommand{\red}[1]{\color{red}{#1}  \color{\myDefaultTextColor}}
+\newcommand{\green}[1]{\color{green}{#1}  \color{\myDefaultTextColor}}
+\newcommand{\purple}[1]{\color{purple}{#1}  \color{\myDefaultTextColor}}
+\definecolor{lightblue}{RGB}{232, 244, 255}
+\definecolor{internationalorange}{rgb}{1.0, 0.31, 0.0}
+\newcommand{\alert}[1]{\color{internationalorange}{#1}  \color{\myDefaultTextColor}}
+
+
+%%% HYPERLINKS,  E.G.  MAKE TOC AND REFERENCES CLICKABLE
+
+% Reference (TOC): https://tex.stackexchange.com/questions/73862/how-can-i-make-a-clickable-table-of-contents
+% Reference (general hyperlinks): https://tex.stackexchange.com/questions/50747/options-for-appearance-of-links-in-hyperref
+% Reference (general hyperlinks): https://tex.stackexchange.com/questions/26071/how-can-i-make-internal-links-both-colored-and-underlined
+
+% RK: I have not been able to get the hyperlinks to be underlined. 
+% Usage: \href{http://www.overleaf.com}{Something  Linky}
+
+
+\usepackage{hyperref}
+\usepackage{tocbibind}
+
+\hypersetup{%
+  colorlinks=true,% hyperlinks will be coloured
+  linkcolor=cyan,% hyperlink text color
+  filecolor=cyan,
+  urlcolor= cyan,
+  linkbordercolor=cyan,% hyperlink border color
+  citecolor = cyan, % citation color
+  pdfborderstyle={/S/U/W 1}% border style will be underline of width 1pt
+}
+
+\urlstyle{same}
+
+% Not sure what the below line is for.
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+
+
+% Attempt to add underlines to hyperlinks, but it's not working. 
+\makeatletter
+\Hy@AtBeginDocument{%
+  \def\@pdfborder{1 1 1}% Overrides border definition set with colorlinks=true
+  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+  % Hyperlink border style will be underline of width 1pt
+}
+\makeatother
+%
+
+
+
+\endinput

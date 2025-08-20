@@ -1,0 +1,447 @@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inzane Syllabus Template
+% LaTeX Template
+% Version 1.2 (8.22.2019)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Carmine Spagnuolo (cspagnuolo@unisa.it) with major modifications by 
+% Zane Wolf (zwolf.mlxvi@gmail.com)
+%
+% I (Zane) have left a lot of instructions both in the .tex file and the .cls file that can guide you to customize this document to suite your tastes and requirements. Here is a brief guide: 
+%  - Changing the Main Color: .cls line 39
+%  - Adding more FAQs: .cls line 126 and .tex line 99
+%  - Adding TA emails: uncomment .cls lines 220 & 224 and .tex lines 85 and 89
+%  - Deleting the FAQ sidebar entirely: .tex line 188
+%  - Removing the Lab/TA Info and placing a brief Overview/About section in their place:        uncomment .tex line 91 and .cls line 227, and comment .cls lines for the LAB/TA info        that you no longer want (c. lines 184-227)
+
+%
+% I am also happy to help with crafting/designing modifications to this template to help suite your personal needs in a syllabus. Feel free to reach out! 
+%
+% License:
+% The MIT License (see included LICENSE file)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[letterpaper]{inzane_syllabus} % a4paper for A4
+
+\usepackage{preamble_syllabus}
+
+
+\usepackage{booktabs, colortbl, xcolor}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{ltablex} 
+\usepackage{multirow}
+
+\setlist{nolistsep}
+
+\usepackage{lscape}
+\newcolumntype{r}{>{\hsize=0.9\hsize}X}
+\newcolumntype{w}{>{\hsize=0.6\hsize}X}
+\newcolumntype{m}{>{\hsize=.9\hsize}X}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{2.0}
+%----------------------------------------------------------------------------------------
+%	 PERSONAL INFORMATION
+%----------------------------------------------------------------------------------------
+
+\profilepic{images/rock_stack.png} % Profile picture, if the height of the picture is less than that of the cirle, it will have a flat bottom. 
+
+% To remove any of the following, you need to comment/delete the lines in the .cls file (c. line 186). Commenting/deleting the lines below will produce an error. 
+
+%To add different lines, you will need to create the new command, e.g. \profPhone, in the .cls file c. line 76, and command to create the line in the side bar in the .cls file c. line 186
+
+\classname{Discrete \\ Structures} 
+\classnum{CSCI 246} 
+
+%%%%%%%%%%%%%%% PROF INFO
+\profname{Dr. Michael  Wojnowicz (Mike)}
+\officehours{Office Hrs: Fri 12:30-3:30pm} 
+\office{Barnard 352}
+\site{https://mikewojnowicz.github.io/} 
+\email{michael.wojnowicz@montana.edu}
+
+%%%%%%%%%%%%%%% COURSE  INFO
+\prereq{Prereq: Calculus, although this is not used.}
+\classdays{}
+\classhours{Class meetings: Mon, Wed, Fri 4:10-5p}
+\classloc{Reid 401}
+
+
+
+%%%%%%%%%%%%%%% TA INFO
+\taAname{TBD}
+\taAofficehours{TBD}
+\taAoffice{TBD}
+\taAemail{\small TBD}
+\taBname{}
+\taBofficehours{}
+\taBoffice{}
+\taBemail{}
+
+
+%%%%%%%%%%%%%%% TUTOR
+\tutorname{TBD}
+\tutoremail{TBD}
+\tutorofficehours{TBD}
+\tutoroffice{SmartyCats Center (2nd floor Renne)}
+
+%%%% FAQs
+
+%to add more questions or remove this section, go to the .cls file and start with lines comment
+%lines 226-250. Also comment out this section as well as line 152(ish), the command \makeSide
+
+\qOne{What are discrete structures?}
+\aOne{A discrete structure refers to a mathematical system that is composed of distinct, separate  elements, as opposed to continuous structures where elements can vary smoothly. Think of a digital clock  vs. an analog clock (where second hand loops around continuously without stopping). Examples of discrete structures include sets with finitely many elements (e.g. the integers 1 to 10), lists, graphs, and logical statements. }
+
+
+\qTwo{What is discrete mathematics?}
+\aTwo{Discrete mathematics is the study of discrete structures and mathematical operations that can be performed upon them.}
+
+
+\qThree{Why study discrete mathematics?}
+\aThree{%It does not directly
+%help us write programs. At the same time, 
+It is the mathematics underlying almost all of computer science. Here are a few examples: (1)  designing high-speed networks and message routing paths,  (2) finding good algorithms for sorting, (3) performing web searches, (4) analyzing algorithms for correctness and efficiency, (5) formalizing security requirements, and (6) designing cryptographic protocols.
+}
+
+\qFour{Where is discrete mathematics used in the MSU computer science curriculum?}
+\aFour{Discrete mathematics is used  throughout the curriculum.  Proofs in particular play a critical role in CSCI 338 (Computer Science Theory) and CSCI 432 (Advanced Algorithm Topics).
+}
+
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+
+\makeprofile % Print the sidebar
+
+%%%%
+
+\section{Course description}
+
+Mathematical concepts used in computer science with an emphasis on mathematical reasoning and proof techniques. This course covers mathematical thinking (elementary logic, theorems, proof techniques), discrete collections (such as sets and lists),  functions and relations,  counting (including permutations and combinations), and miscellaneous topics (recursions, Big-O notation, graphs).  Writing and understanding proofs will be an important part of this course.
+
+%%%%%
+\vspace{0.2cm} 
+\section{Readings}
+
+{\color{myCOLOR} Primary textbook}\\
+Scheinerman, E. R. (2013). \textit{Mathematics: a discrete introduction.} Third edition.\\
+\\
+{\color{myCOLOR} Supplemental readings}\\ For certain topics, I will provide handouts, drawn from: 
+\begin{itemize}
+\item \href{https://www.toomey.org/tutor/text_books/Digital_Logic/Discrete%20Mathematics%20with%20Applications%20-%20Susanna%20S.%20Epp%20(2019).pdf}{Susanne Epp (2020).  \textit{Discrete Mathematics with Applications}.} 
+\item Lov\'asz, Pelik\'an, and Vesztergombi (2003).  \textit{Discrete Mathematics: Elementary and Beyond.} 
+\item Joel David Hamkins (2020). \textit{Proof and the Art of Mathematics.}	
+\end{itemize}
+
+%%%%%
+\vspace{0.2cm}
+\section{Learning Outcomes}
+
+%use \begin{outline} or \begin{outline}[enumerate] to create a list with subitems. 
+\begin{itemize}
+\item To understand several central concepts from discrete mathematics that are used throughout computer science;
+\item To learn to reason mathematically and communicate ideas in a clear and concise manner;
+\item To use induction and other techniques of mathematical proofs.
+\end{itemize}
+
+
+%{\color{myCOLOR} Other}\\
+%Any required journal articles and book chapters will be provided on \red{Canvas}. 
+
+
+%%%%%
+\vspace{0.2cm} 
+\section{Learning Philosophy}
+
+This course will use an ``inquiry-based learning" approach. This means that classes will not be lecture-oriented. Instead, to quote Dr. Dana Ernst,
+
+\begin{quotation}
+\textit{You will be expected to work actively to construct your own understanding of the topics at hand with the readily available help of me and your classmates. Many of the concepts you learn and problems you work on will be new to you and ask you to stretch your thinking. You will experience frustration and failure before you experience understanding. This is part of the normal learning process. If you are doing things well, you should be confused at different points in the semester.}
+\end{quotation}
+
+Active learning has been shown to increase student performance in STEM courses (e.g. see \cite{deslauriers2011improved, freeman2014active}). 
+
+%%%%
+\vspace{0.2cm}
+\section{Class activity}
+
+A typical class meeting will be structured as follows:
+
+\noindent
+\begin{minipage}{0.45\textwidth}
+Mon/Wed
+\begin{itemize}
+\item Mini-lecture: 20 mins
+\item Group exercises: 20 mins	
+\item Discuss exercises: 10 mins
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+Fri
+\begin{itemize}
+\item Weekly quiz: 20 mins
+\item Mini-lecture: 15 mins
+\item Group exercises: 15 mins
+\end{itemize}
+\end{minipage}
+
+%The course structure follows best practices developed by the Carl Wieman Science Education Initiative (CWSEI).
+
+%%%%%
+\vspace{0.1cm} 
+
+%%%%%
+{\color{myCOLOR} Daily readings}
+
+Before each class meeting, you will be assigned a reading from the textbook. The reading serves preparation for the group exercises. %Before some classes, you will be given a short reader response questionnaire (with questions like, "what did you find confusing?") posted as a survey Brightspace.  Each class meeting will begin with a 5-minute reading quiz.
+
+
+{\color{myCOLOR} Group exercises}
+
+The group exercises are for collaborative problem-solving.  Each class meeting, students will be split randomly into groups of three to work on problems using the whiteboards (or windows). Mathematics is not a spectator sport!
+
+
+
+%%%%%
+{\color{myCOLOR} Weekly quiz}
+
+The Friday weekly quizzes will cover group exercises and the readings from the most recent three class meetings (i.e., Monday, Wednesday, and the previous Friday). 
+
+% Lecture is to go over the reading quiz, cover things people didn't understand from the current/previous reading. 
+
+%%%%
+%%%%% NEW PAGE 
+
+\newpage % Start a new page
+
+\makeSide % Print the FAQ sidebar; To get rid of, simply comment out and uncomment \makeFullPage
+
+% \makeFullPage
+
+\vspace{0.2cm}
+\section{Grading}
+
+\begin{itemize}
+\item Weekly Quizzes: 30\%  
+\item Project: 15\% 
+\item Participation: 10\% 
+\item Midterm: 20\%
+\item Final: 25\%
+\end{itemize}
+
+Grades will be assigned as follows: \\
+A: 93-100, A-: 90-93, B+: 87-90, B: 83-87, B-: 80-83, C+: 77-80, C: 73-77, C-: 70-73, D+: 67-70, D: 63-67, D-: 60-63, F: 0-60.
+
+
+%%%%% 
+%\vspace{0.4cm}
+%\section{Rubric} Quizzes will be graded according to the following rubric.
+%\begin{itemize}
+%\item (4 points) Correct and well-written.
+%\item  (3 points) Good work but some mathematical or writing errors that need addressing.
+%\item (2 points) Some good intuition, but there is at least one serious flaw.
+%\item (1 point) I don't understand this, but I see that you did work on it.
+%\item (0 points) No work is evident.
+%\end{itemize}
+
+
+%%%%
+\vspace{0.4cm}
+\section{Project} 
+
+The purpose of the project is for students to focus on some aspect of discrete mathematics of particular interest.  Students will work in small groups, choose some aspect of discrete mathematics (that was not covered in class), and develop a 5 minute presentation to give to the class.   For example, a group might give an overview to public key cryptography, or explore how graph theory underlies web search.   There will also be a written component. More information will be given as the time approaches.
+
+
+\vspace{0.4cm}
+\section{Makeup policy}
+
+Quizzes and participation have no makeups. However, I drop 4 participation days and 2 weekly quizzes with no consequence. Missed material beyond that (with a valid explanation and documentation) can be replaced with the final exam grade.
+
+\vspace{0.4cm}
+%\section{Final Exam}
+%
+%The final will be 2pm-3:50pm on Wednesday, May 7 in Reid 401.
+%
+%\vspace{0.4cm}
+%\section{Communication expectations}
+%
+%For non-personal questions related to course content, please use the Ask Your Instructor form on D2L, so that all students can benefit from the question and answer.   For personal questions, please contact me by e-mail.
+
+%\newpage % Start a new page
+%\makeEmptySide
+
+\vspace{0.4cm}
+\section{Diversity and Inclusivity Statement}
+
+I consider this classroom to be a place where you will be treated with respect, and I welcome individuals of all ages, backgrounds, beliefs, ethnicities, genders, gender identities, gender expressions, national origins, religious affiliations, sexual orientations, ability - and other visible and non-visible differences. All members of this class are expected to contribute to a respectful, welcoming and inclusive environment for every other member of the class.  Your suggestions about how to improve the value of diversity in this course are encouraged and appreciated. Please let me know ways to improve the effectiveness of the course for you personally or for other students or student groups.
+ 
+\vspace{0.4cm}
+\section{Accommodations for Students with Disabilities}
+
+If you are a student with a disability and wish to use your approved accommodations for this course, contact me during my office hours to discuss. Please have your Accommodation Notification available for verification of accommodations. Accommodations are approved through the Office of Disability Services located in 137 Romney Hall.  www.montana.edu/disabilityservices.
+
+\vspace{0.4cm}
+\section{Student Conduct}
+
+You are expected to abide by MSU's Code of Student Conduct.
+%
+%\vspace{0.4cm}
+%\section{Land Acknowledgement}
+%
+%Living in Montana, we are on the ancestral lands of American Indians, including
+%the 12 tribal nations that call Montana home today: A’aninin (Gros Ventre),
+%Amskapi/Piikani (Blackfeet), Annishinabe (Chippewa/Ojibway), Annishinabe/Métis
+%(Little Shell Chippewa), Apsáalooke (Crow), Ktunaxa/Ksanka (Kootenai), Lakota,
+%Dakota (Sioux), Nakoda (Assiniboine), Ne-i-yah-wahk (Plains Cree), Qíispé (Pend
+%d’Oreille), Seliš (Salish), and Tsétsêhéstâhese/So’taahe (Northern Cheyenne).
+%We honor and respect these tribal nations as we live, work, learn, and play in
+%this state. To learn more about Montana Indians, consider reading the pamphlet \textit{Essential Understandings Regarding Montana Indians}, available online.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                COURSE SCHEDULE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\makeFullPage
+\section{Class Schedule}
+
+%https://github.com/mikewojnowicz/csci246_spring2025/blob/main/LINKS.md
+
+\begin{center}
+\begin{tabularx}{\textwidth}{p{2cm}p{2cm}p{8cm}p{9.5cm}} %change the width of the comments by changing these cm measurements. Add/substract columns by adding/deleting p{} sections. 
+\arrayrulecolor{myCOLOR}\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 0: Course Overview}}} \\
+\hline
+Wed & Aug 20 & Course Overview & \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MODULE 1
+\arrayrulecolor{myCOLOR}\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 1: Fundamentals}}} \\
+\hline
+Fri & Aug 22 &  Definition & Sec 3 \\
+Mon & Aug 25 &  Theorem & Sec 4 \\
+Wed &  Aug 27 & Proof & Sec 5 \\
+Fri &  Aug 29 & Counterexample & Sec 6 \\
+Mon & Sept 1 & Holiday (Labor Day) & \\
+Wed &  Sept 3 & Boolean Algebra & Sec 7 \\
+Fri &  Sept 5 & Multiple Proofs  & Hamkins Ch. 2\\
+\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 2: Discrete Collections }}} \\
+\hline
+
+Mon &  Sept 8 & Lists & Sec 8 \\
+Wed &  Sept 10 & Factorial & Sec 9 \\
+Fri &  Sept 12 & Sets & Sec 10 \\
+Mon &  Sept 15 & Quantifiers &  Sec 11  \\
+Wed &  Sept 17 & Operations on Sets & Sec 12 \\
+\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 3: Counting and relations}}} \\
+\hline
+Fri & Sept 19 & Relations & Sec 14 \\
+Mon &  Sept 22 & Equivalence Relations & Sec 15 \\
+Wed & Sept 24 & Partitions & Sec 16 \\
+Fri & Sept 26 & Binomial Coefficients (Combinations) & Sec 17  \\
+\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MIDTERM}}} \\
+\hline
+Mon & Sept 29 & Review for Midterm & \\
+Wed & Oct 1 & MIDTERM EXAM & \\
+\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 4: More proof}}} \\
+\hline
+
+Fri &  Oct 3 & Contradiction & Sec 20 \\
+Mon &  Oct 6 & Smallest counterexample & Sec 21 \\
+Wed &  Oct 8 & Induction & Sec 22  \\
+Fri &  Oct 10 & Recurrence  & Sec 23 \\
+\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 5: Functions and Big O notation}}} \\
+\hline
+Mon &  Oct 13  & Functions & Sec 24 \\
+Wed &  Oct 15  & Real-valued functions & Epp Sec 11.1 \\
+Fri &  Oct 17 & Big O Notation & Epp Sec 11.2 \\
+Mon &  Oct 20  & Application: Analysis of Algorithm Efficiency & Epp Sec 11.3 \\
+\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 6: Discrete probability}}} \\
+\hline
+Wed & Oct 22  & Intro to Probability (Part 1) & Sec 30 \\ 
+Fri & Oct 24 &  Intro to Probability  (Part 2) & Sec 31 \\
+Mon &  Oct 27 & Conditional Probability /Independence &  Sec 32\\
+Wed &  Oct 29  &  Random variables & Sec 33 \\
+Fri &  Oct 31 & Expectation & Sec 34 \\
+\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 7: Graph theory}}} \\
+\hline
+Mon &  Nov 3 & Degrees & Lov\'asz Sec 7.1 \\
+Wed &  Nov 5 & Paths and Walks & Lov\'asz Secs 7.2-7.3 \\
+Fri &  Nov 7  & Trees & Lov\'asz Secs 8.1-8.3 \\
+Mon &  Nov 10 & Trees & Lov\'asz Secs 8.4-8.5 \\
+Wed &  Nov 12 & Finding the best tree & Lov\'asz Sec 9.1 \\
+%% Mon Mar
+%Wed &  Apr 2 & Recurrence  & Sec 23 \\
+%Fri &  Apr 4 & Complexity & Handout to be posted on Brightspace \\
+%Mon &  Apr 7 & Graph theory & JDH CH 12 \\
+%Wed &  Apr 9 & Graph theory (continued) & JDH CH 12 \\
+\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 8: Group Presentations}}} \\
+\hline
+Fri &  Nov 14 & Prepare Group Presentations & \\
+Mon &  Nov 17 & Group Presentations & \\
+Wed &  Nov 19 & Group Presentations & \\
+Fri &  Nov 21  & Group Presentations  & \\
+ & & Fall Break & \\
+Mon &  Dec 1 & Group Presentations & \\
+Wed & Dec 3 & Catchup Day & \\
+\hline
+\multicolumn{4}{l}{\textbf{\textcolor{myCOLOR}{\large FINAL}}} \\
+\hline
+Fri & Dec 5 &  Final Preparation  &\\
+Wed & Dec 10 & Final (4:00 - 5:50pm) & \\
+\hline
+% \hline
+% Week & Topic & Readings \\ \hline 
+%%%Alternatively, instead of Week #, you can do Class date for meeting
+%Week 1 & History of the Earth - Fish Remix & Friedman, M. \& Salland, L.C. (2012). Five hundred million years of extinction and recovery: A Phanerozoic survey of large-scale diversity patterns in fishes. \textit{Palaeontology}, 55(4):707-742 \\
+%
+%& Stem \& Extant Agnathans \& Gnathostomes & DOF Ch. 11, pp. 169-179; Ch. 13, pp. 231-240  \\
+%& & Brazeau, M.D. \& Friedman, M. (2015). The origin and early phylogenetic history of jawed vertebrates. \textit{Nature}, 520(7548): 490-497.\\
+%\arrayrulecolor{maingray}\hline
+%\arrayrulecolor{myCOLOR}\hline
+%\multicolumn{2}{l}{\textbf{\textcolor{myCOLOR}{\large MODULE 3: There Goes the Neighborhood }}} \\
+%\hline 
+\hline 
+\end{tabularx}
+Note: The class schedule is tentative; it is subject to change as the course progresses.
+\end{center}
+
+\vspace{1cm}
+\section{External Resources}
+
+For a list of external resources on discrete mathematics, click  \href{https://github.com/mikewojnowicz/csci246_fall2025/blob/main/LINKS.md}{here}.  This list will be updated throughout the semester.
+
+\vspace{0.4cm}
+%\newpage
+%\makeFullPage
+\bibliography{references.bib}
+\bibliographystyle{unsrt}
+
+
+\end{document} 
+
+
