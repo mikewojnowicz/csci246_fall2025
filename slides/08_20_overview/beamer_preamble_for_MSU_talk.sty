@@ -1,0 +1,590 @@
+
+%%%%
+% CHANGELOG
+%%%%
+% 12/6/23: New \bottomtext command.
+% 8/30/21: Added proposition.
+% 6/8/21: Added \bluemathbox,  \labeledbluemathbox,  and likewise for green and red.  This lets us (continue to) use math mode when we're inside an equation or align environment,  without having to clunkily add $'s inside the args of the function.
+%6/8/21: Change \bluebox, \greenbox,\redbox to take 1 arg instead of two, as the first argument had been a dummy argument.  Note this is NOT backwards compatible!
+
+%%%%% 
+% USER INSTRUCTIONS:
+%%%%
+
+%%% TO MAKE A GREYED OUT BOX
+
+%\metroset{block=fill}
+%\begin{block}
+%\end{block}
+
+
+%%% TO MAKE A SECTION WITH A BLUE TITLE
+
+%\begin{sblock}
+%\end{sblock}
+
+%%% TO MAKE COLORED BOXES AROUND MATH EQUATIONS
+
+%\bluemathbox{my equation}
+%\greenmathbox{my equation}
+%\redmathbox{my equation}
+
+%\labeledbluemathbox{my \; label}{my equation}
+%\labeledgreenmathbox{my \; label}{my equation}
+%\labeledredmathbox{my \; label}{my equation}
+
+
+%%%% 
+% THE PREAMBLE 
+%%%%
+
+%%% DEFINE A PREAMBLE
+%% REFERENCE: https://tex.stackexchange.com/questions/77/how-to-make-a-standard-preamble-into-a-package?rq=1
+
+% Declare that this style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+%% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+%\ProvidesPackage{mikestyle}
+
+
+\usetheme{metropolis}
+%\usetheme{Berkeley}
+\usepackage{appendixnumberbeamer}
+
+
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+
+
+\usepackage{amsmath}
+\usepackage{media9}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{bayesnet} %for plate notation
+\usepackage{listings} %for printing python code
+
+
+%%%% This next section builds the \warning symbol
+%%\usepackage[utf8]{inputenc}
+%\usepackage{xcolor}
+%\usepackage{newunicodechar}
+%
+%\newcommand\warning{%
+% \makebox[1.4em][c]{%
+% \makebox[0pt][c]{\raisebox{.1em}{\small!}}%
+% \makebox[0pt][c]{\color{red}\Large$\bigtriangleup$}}}%
+% 
+
+\usepackage[most, skins,theorems]{tcolorbox}
+\tcbset{highlight math style={enhanced,
+  colframe=red,colback=white,arc=0pt,boxrule=1pt}}
+%Reference (option=most):
+% 	https://tex.stackexchange.com/questions/279464/2-boxed-equations-on-one-lineblue-outline-box-and-shadow
+%Usage:
+%	\tcboxmath{something}
+
+%Reference (option=skins, theorems): 
+%https://tex.stackexchange.com/questions/122945/coloured-shadowed-boxes-around-equations
+
+  
+
+
+
+%https://tex.stackexchange.com/questions/395140/change-font-size-of-one-equation-in-align-environment?rq=1
+%has medmath for reducing font size in align environments
+\usepackage{mathtools, nccmath} 
+
+
+%https://jansoehlke.com/2010/06/strikethrough-in-latex/
+%lets you cancel out terms in an equation
+\usepackage{cancel}
+
+
+%%% COLORS
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.55}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+\definecolor{purple}{rgb}{0.5, 0.0, 0.5}
+\definecolor{lightblue}{RGB}{232, 244, 255}
+\definecolor{cyan}{rgb}{0.0, 1.0,1.0}
+
+
+% TODO: Can't assume we'll go back to black, necessarily.
+\newcommand{\purple}[1]{\color{purple}{#1}  \color{black}}
+\newcommand{\blue}[1]{\color{blue}{#1}  \color{black}}
+\newcommand{\red}[1]{\color{red}{#1}  \color{black}}
+\newcommand{\green}[1]{\color{green}{#1}  \color{black}}
+\newcommand{\darkgreen}[1]{\color{darkgreen}{#1}  \color{black}}
+\newcommand{\darkblue}[1]{\color{darkblue}{#1}  \color{black}}
+\newcommand{\cyan}[1]{\color{cyan}{#1}  \color{black}}
+
+
+%%% GENERALLY USEFUL 
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\df}{\displaystyle\frac}
+\newcommand{\biggexp}[1]{\exp  \bigg\{ {#1} \bigg\} }
+\newcommand{\+}[1]{\ensuremath{{\boldsymbol #1}}} %another way to make bold symbols
+\newcommand{\cond}{\; | \;}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\partialderiv}[2]{\df {\partial {#1}}{\partial {#2}} }
+\newcommand{\indep}{\perp \!\!\! \perp}
+\newcommand{\logdet}[1]{\log |{#1}|}
+
+%%% PROBABILITY
+\newcommand{\iid}{\stackrel{\text{i.i.d.}}{\sim}}
+\newcommand{\indsim}{\stackrel{\text{ind}}{\sim}}
+\newcommand{\IG}{\mathcal{I}\mathcal{G}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\V}{\mathbb{V}}  %for variance
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\biggE}[2]{\E_{{#1}} \bigg[ {{#2}} \bigg]}
+%\newcommand{\H}{\mathbb{H}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\absdet}[1]{ \; \bigg\lvert \det{#1}  \bigg\rvert  \;}
+\newcommand{\logabsdet}[1]{ \log \absdet{#1}}
+\newcommand{\KL}[2] {\texttt{KL} \big({#1} \; \big|\big| \; {#2} \big)}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\ind}{\perp\kern-5pt\perp}
+\newcommand{\scriptE}{\mathcal{E}} % elementary family of sets
+\newcommand{\F}{\mathcal{F}} % for sigma fields 
+%https://tex.stackexchange.com/questions/128797/a-renewcommand-that-does-not-care-if-a-command-is-already-defined
+\providecommand{\G}{}
+\renewcommand{\G}{\mathcal{G}} %another sigma field 
+\newcommand{\B}{\mathcal{B}} %borel sets 
+\newcommand{\M}{\mathcal{M}} % sigma field
+% \N already defined as normal, but can be used as sigma field.  NOTE: This clashes with \N for natural numbers!
+\newcommand{\sigmafield}{\sigma-\text{field}}
+\newcommand{\ELBO}{\mathcal{L}}
+\newcommand{\X}{\mathcal{X}} %some space
+\renewcommand{\H}{\mathbb{H}} %entropy
+
+
+% DISTRIBUTIONS
+\newcommand{\Uniform}{\text{Uniform}}
+\newcommand{\Dirichlet}{\text{Dirichlet}}
+\newcommand{\Categorical}{\text{Categorical}}
+\newcommand{\Normal}{\mathcal{N}}
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\InverseGamma}{\mathcal{I}\mathcal{G}}
+\newcommand{\Wishart}{\mathcal{W}}
+\newcommand{\InverseWishart}{\Wishart^{-1}}
+\newcommand{\InvWish}{\Wishart^{-1}}
+\newcommand{\MNIW}{\text{MNIW}}
+\newcommand{\Multinomial}{\text{Multinomial}}
+\newcommand{\Binomial}{\text{Binomial}}
+\newcommand{\Bernoulli}{\text{Bernoulli}}
+\newcommand{\PG}{\text{PG}} %polyagamma
+\newcommand{\GammaDist}{\text{Gamma}}
+\newcommand{\TruncatedNormal}{\mathcal{T} \mathcal{N}}
+\newcommand{\MultivariateTruncatedNormal}{\mathcal{M} \mathcal{T} \mathcal{N}}
+\newcommand{\Beta}{\text{Beta}}
+
+%%% LINEAR ALGEBRA
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\trace}{\tr}
+
+%%% INTEGRALS
+\newcommand{\wrt}[1]{\; d {#1} \;} 
+
+%%% SETS
+\newcommand{\set}[1] { \{  {#1} \} }
+
+%%% CUPDOT, BIGCUPDOT 
+% Reference: https://tex.stackexchange.com/questions/3964/mathematical-symbol-for-disjoint-set-union
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+
+
+%% SHADED BOXES
+%colored shaded boxes
+\newcommand{\blueboxutility}[2] { \tikz[baseline]{\node[fill=blue!20,anchor=base]({#1}) { {#2} } }}
+\newcommand{\redboxutility}[2] { \tikz[baseline]{\node[fill=red!20,anchor=base]({#1}) { {#2} } }}
+\newcommand{\greenboxutility}[2] { \tikz[baseline]{\node[fill=green!20,anchor=base]({#1}) { {#2} } }}
+\newcommand{\cyanboxutility}[2] { \tikz[baseline]{\node[fill=cyan!20,anchor=base]({#1}) { {#2} } }}
+\newcommand{\purpleboxutility}[2] { \tikz[baseline]{\node[fill=purple!20,anchor=base]({#1}) { {#2} } }}
+
+%these put a label beneath the shaded box, in the same color
+\newcommand{\labeledbluebox}[2]{  \underset{\blue{\text{#1}}}{\blueboxutility{_dummy_}{#2}} }
+\newcommand{\labeledredbox}[2]{  \underset{\red{\text{#1}}}{\redboxutility{_dummy_}{#2}} }
+\newcommand{\labeledgreenbox}[2]{  \underset{\green{\text{#1}}}{\greenboxutility{_dummy_}{#2}} }
+\newcommand{\labeledcyanbox}[2]{  \underset{\cyan{\text{#1}}}{\cyanboxutility{_dummy_}{#2}} }
+\newcommand{\labeledpurplebox}[2]{  \underset{\purple{\text{#1}}}{\purpleboxutility{_dummy_}{#2}} }
+
+\newcommand{\labeledbluemathbox}[2]{\labeledbluebox{{#1}}{ $ {#2} $ }}
+\newcommand{\labeledredmathbox}[2]{\labeledredbox{{#1}}{ $ {#2} $ }}
+\newcommand{\labeledgreenmathbox}[2]{\labeledgreenbox{{#1}}{ $ {#2} $ }}
+\newcommand{\labeledcyanmathbox}[2]{\labeledcyanbox{{#1}}{ $ {#2} $ }}
+\newcommand{\labeledpurplemathbox}[2]{\labeledpurplebox{{#1}}{ $ {#2} $ }}
+
+\newcommand{\bluebox}[1]{  {\labeledbluebox{}{#1}} }
+\newcommand{\redbox}[1]{  {\labeledredbox{}{#1}} }
+\newcommand{\greenbox}[1]{  {\labeledgreenbox{}{#1}} }
+\newcommand{\cyanbox}[1]{  {\labeledcyanbox{}{#1}} }
+\newcommand{\purplebox}[1]{  {\labeledpurplebox{}{#1}} }
+%https://github.com/matze/mtheme
+
+\newcommand{\bluemathbox}[1]{\bluebox{ $ {#1} $ }}
+\newcommand{\redmathbox}[1]{\redbox{ $ {#1} $ }}
+\newcommand{\greenmathbox}[1]{\greenbox{ $ {#1} $ }}
+\newcommand{\cyanmathbox}[1]{\cyanbox{ $ {#1} $ }}
+\newcommand{\purplemathbox}[1]{\purplebox{ $ {#1} $ }}
+%https://github.com/matze/mtheme
+
+
+%%% CHANGE BEAMER BLOCK COLOR
+\setbeamercolor{block title}{bg=blue!30,fg=black}
+\setbeamercolor{block body}{bg=blue!10,fg=black}
+
+%% CHECKMARK 
+\usepackage{pifont}% for cmark and xmark for checkmark and xmark 
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\greencheck}{\green{\cmark}}
+\newcommand{\redx}{\red{\xmark}}
+
+%% HEARTS
+\newcommand{\heart}{\ensuremath\heartsuit}
+
+
+%%% SIMPLE BLOCK
+\newenvironment{sblock}[1]
+{
+\setbeamercolor{block title}{bg=black!2,fg=darkblue}
+\setbeamerfont{block title}{size=\large}
+\setbeamercolor{block body}{bg=black!2,fg=black}
+\begin{block}{#1}
+}
+{
+\end{block}
+}
+
+
+%TO DRAW ARROWS WITH EQUATIONS AND SHADE THEM.
+% REFRENCE: http://www.texample.net/tikz/examples/beamer-arrows/
+% For every picture that defines or uses external nodes, you'll have to
+% apply the 'remember picture' style. To avoid some typing, we'll apply
+% the style to all pictures.
+\tikzstyle{every picture}+=[remember picture]
+
+
+%%% SIMPLE TEXT
+\renewcommand{\bf}[1]{\textbf{{#1}}}
+\renewcommand{\it}[1]{\textit{{#1}}}
+
+% TINY TEXT
+%%% Option 1: \tinytext 
+% \tinytext can be used in math mode.  It does not have line wrapping
+\newcommand{\tinytext}[1]{\text{\tiny{{#1}}}}
+\newcommand{\smalltext}[1]{\text{\scriptsize{{#1}}}}
+\newcommand{\foottext}[1]{\text{\footnotesize {{#1}}}}
+\newcommand{\footnotesizetext}[1]{\text{\footnotesize {{#1}}}}
+\newcommand{\scripttext}[1]{\text{\scriptsize{{#1}}}}
+\newcommand{\largetext}[1]{\text{\large{{#1}}}}
+
+%%% Option 2: \totiny 
+% \totiny is meant for text mode  It does have line wrapping
+
+% First we need to store the previous font
+\newcommand{\saveFont}{\xdef\oldfontsize{\f@size}\xdef\oldblskip{\f@baselineskip}}
+\newcommand{\backToPrevFont}{\fontsize{\oldfontsize}{\oldblskip}\selectfont}
+
+\newcommand{\totiny}[1]{\saveFont \tiny #1   \backToPrevFont}
+
+ 
+ %%% PUT TEXT AT BOTTOM OF SLIDE
+%Reference: https://tex.stackexchange.com/questions/54180/how-do-i-write-something-at-the-end-of-the-slide-in-beamer
+% Note: When using this command,  \vfill will not work as normally.  Instead you would have to manually choose a unit of measurement for the amount of blank space,  e.g. \vskip10ex (approximatley 10 times the height of an x in the current font), \vskip2in, or whatever.  See https://tex.stackexchange.com/questions/8260/what-are-the-various-units-ex-em-in-pt-bp-dd-pc-expressed-in-mm for more on measurements.
+\newcommand{\citebottom}[1]{
+\vskip0pt plus 1filll  \tiny {#1}
+}
+\newcommand{\bottomtext}[1]{\citebottom{#1}}
+\newcommand{\bottomtinytext}[1]{\bottomtext{#1}}
+\newcommand{\bottomscripttext}[1]{
+\vskip0pt plus 1filll  \scriptsize {#1}
+}
+
+
+%%%
+%% NEW BOTTOM TEXT COMMAND (via ChatGPT)
+%%%
+\usepackage[absolute,overlay]{textpos}
+
+\renewcommand{\bottomtext}[1]{%
+    \begin{textblock*}{\textwidth}(3.5em,\textheight + 1.5em)
+        \raggedright \tiny 
+        #1
+    \end{textblock*}%
+}
+
+
+ %%%% SUPPORT MAKING \subsectionpage
+\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSubsection{\frame{\subsectionpage}}
+
+%%% Citations should be rendered differently in beamer -- ADD TO BEAMER
+\renewcommand{\cite}[1]{{\tiny{(\textit{#1})}}}
+
+%%% ADD LABELS TO ALIGN* ENVIRONMENT
+% Reference: https://tex.stackexchange.com/questions/42726/align-but-show-one-equation-number-at-the-end
+\newcommand\labelit{\addtocounter{equation}{1}\tag{\theequation}}
+
+%%% NICE ONES
+\usepackage{bbm}
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\indicate}[1]{1_{#1}}
+
+%
+%%% SIMPLE BIGG PARENTHESES AND BRACKETS
+\newcommand{\bp}[1]{\bigg(  {#1} \bigg)} %stands for big parentheses 
+\newcommand{\bb}[1]{\bigg[  {#1} \bigg]} %stands for big bracket 
+\newcommand{\bc}[1]{\bigg\{  {#1} \bigg\}} %stands for big curly 
+  
+%%% EXPLANATIONS  
+%explaining equations 
+\newcommand{\explaineq}[1]{\stackrel{\text{#1}}{=}}
+%explain terms
+\newcommand{\explainterm}[2]{\underset{\textit{#1}}{#2}}
+%same as explainterm but you put the term first, explanation second
+\newcommand{\explain}[2]{\underset{\textit{#2}}{#1}}
+%explain terms with underbrace
+\newcommand{\explaintermbrace}[2]{\underbrace{#2}_{\text{#1}}}
+%same as explain term brace, but you put the term first, explanation second
+\newcommand{\explainbrace}[2]{\underbrace{#1}_{\text{#2}}}
+\newcommand{\stackexplain}[2]{\stackrel{\textit{#1}}{{#2}}}
+%\stackreltext is an alias for \stackexplain, hoping to make it
+% easier to remember
+\newcommand{\stackreltext}[2]{\stackrel{\text{#1}}{{#2}}}
+
+
+
+  %%% WIDE COMMANDS
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+
+%%% ARGMAX / ARGMIN
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+
+% THEOREM STYLES 
+% Reference: https://www.overleaf.com/learn/latex/Theorems_and_proofs
+% I have decided to nujmber everything by section.  See 
+% https://tex.stackexchange.com/questions/45355/theorem-numbering-as-chapter-section-subsection-theorem-number
+\usepackage{amsthm}
+%% FOR SLIDES I DONT WANT TO NUMBER BY SUBSECTION!!!
+%\numberwithin{equation}{subsection}
+
+
+%\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+%\newtheorem{corollary}{Corollary}[subsection]
+\newtheorem{conjecture}{Conjecture}[subsection]
+\newtheorem{numberedalgorithm}{Algorithm}[subsection]
+
+%\usepackage{ntheorem}
+%\usepackage{thmtools}
+%\declaretheorem[numberlike=equation]{claim}\\
+
+%%% MAKE METROSET BLOCKS AS WIDE AS THE PAGE
+% Reference: https://tex.stackexchange.com/questions/411493/beamer-block-as-wide-as-the-entire-page
+
+\makeatletter
+\newlength{\metropolis@blockwd}
+\setlength{\metropolis@blockwd}{\paperwidth}
+\renewcommand{\metropolis@block}[1]{
+  \par\vskip\medskipamount%
+  \setlength{\parskip}{0pt}
+  \ifbeamercolorempty[bg]{block title#1}{%
+    \begin{beamercolorbox}[rightskip=0pt plus 4em,wd=\metropolis@blockwd]{block title#1}}{%
+  \ifbeamercolorempty[bg]{block title}{%
+    \begin{beamercolorbox}[rightskip=0pt plus 4em,wd=\metropolis@blockwd]{block title#1}%
+  }%
+  {%
+    \begin{beamercolorbox}[
+      sep=\dimexpr\metropolis@blocksep-\metropolis@blockadjust\relax,
+      leftskip=\metropolis@blockadjust,
+      rightskip=\dimexpr\metropolis@blockadjust plus 4em\relax,
+      wd=\metropolis@blockwd
+    ]{block title#1}%
+  }}%
+      \usebeamerfont*{block title#1}%
+      \metropolis@strut%
+      \insertblocktitle%
+      \metropolis@strut%
+  \end{beamercolorbox}%
+  \nointerlineskip%
+  \ifbeamercolorempty[bg]{block body#1}{%
+    \begin{beamercolorbox}[vmode,wd=\paperwidth]{block body#1}}{
+  \ifbeamercolorempty[bg]{block body}{%
+    \begin{beamercolorbox}[vmode,wd=\paperwidth]{block body#1}%
+  }{%
+    \begin{beamercolorbox}[sep=\metropolis@blocksep, vmode,wd=\metropolis@blockwd]{block body#1}%
+    \vspace{-\metropolis@parskip}
+  }}%
+      \usebeamerfont{block body#1}%
+      \setlength{\parskip}{\metropolis@parskip}%
+}
+\makeatother
+
+%%% ALLOW MULTICOLS FOR SIDE BY SIDE LISTS
+\usepackage{multicol}
+%\begin{multicols}{2}
+%\end{multicols}
+
+% ENUMERATE BUT WITH LETTERS
+\newenvironment{alphabate}
+    {\begin{enumerate}[label=\alph*)]}
+	{\end{enumerate} }
+	
+%%%
+% TENSOR REPRESENTATION VIA \mathtens{} 
+%%%
+
+% These commands load math families and math 
+% alphabets necessary to support the \mathtens{} command
+% for rendering tensors.   (They also render vectors via
+% \mathvec{}, but I am not currently using that.)
+%
+% References:
+% 1.  [The document describing which math families to load.] See pp. E169 of https://tug.org/TUGboat/tb30-3/tb96vieth.pdf
+% 2.  [Machine learning notation for tensors]: https://nthu-datalab.github.io/ml/slides/Notation.pdf.     Rebecca
+% Batorsky says tensors are usually boldface but a sans-serif font.
+\DeclareSymbolFont{vectors}{OML}{cmm}{b}{it}
+\DeclareSymbolFont{tensors}{OT1}{cmss}{bx}{it}
+\DeclareSymbolFontAlphabet{\mathvec} {vectors}
+\DeclareSymbolFontAlphabet{\mathtens}{tensors}
+
+
+%%%
+% DRAW BUBBLES WITH TEXT AT AN ARBITRARY LOCATION
+%%%
+% syntax \bluebubble{x}{y}{text}
+\newcommand{\bluebubble}[3] 
+{\tikz[remember picture,overlay]{
+        \node [draw, rounded rectangle, fill=blue!10]  at ({#1}, {#2}) {{#3}}}}%
+
+
+%%%
+% VERTICAL EQUAL SIGN
+%%%
+% Reference: https://tex.stackexchange.com/questions/100538/vertical-equal-sign
+% Usage:  \vertequalto{(x + z)}{5}
+\newcommand{\verteq}{\rotatebox{90}{$\,=$}}
+\newcommand{\vertequalto}[2]{\underset{\scriptstyle\overset{\mkern4mu\verteq}{#2}}{#1}}
+
+%%%
+% DEFINED AS EQUAL TO
+%%%
+\newcommand{\defeq}{\triangleq}
+
+%% EQUATION REFERENCES
+% (refers to an equation in a paper style, with parentheses around it
+\renewcommand{\eq}[1]{(\ref{#1})}
+% If we use \eqref,  we get something like (1)
+% If we use \Eqref,  we get something like Eq.~(1).
+\newcommand{\Eqref}[1]{Eq.~\eqref{#1}}
+
+% CIRCLED NUMBERS 
+\newcommand*\tinycircled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {\tiny \ensuremath #1};}}
+       \newcommand*\scriptcircled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {\scriptsize \ensuremath #1};}}
+                 
+ %%% TYPEWRITER FONTTED VI ACRONYMS 
+\newcommand{\bbvi}{\,\texttt{bbvi}\,}
+\newcommand{\VLBO}{\,\texttt{VLBO}\,}
+
+%%%
+% POLYA GAMMA AUGMENTATION TEXT WORDS
+%%%
+
+\newcommand{\polya}{P\`{o}lya\,}
+\newcommand{\polyaGamma}{P\`{o}lya-Gamma\,}
+\newcommand{\pga}{\polyaGamma augmentation\,}
+
+%%% 
+% SUPERSCRIPT WITH PARENTHESES 
+%%%%
+
+% Motivation: In this document, we use notation to distinguish between columns and rows of matrices.  If $\+X$ is a matrix, its  $i$-th column is designated with a subscript as $\+x_i$,  and the $j$-th row is designated with a superscript and  parentheses as $\rowify{\+x}{j}$.
+
+% ATTEMPT 1
+%\newcommand{\rowindex}[1]{\sp{({#1})}} %\sp{} stands for superscript.
+% Usage: $\+x\rowindex{i}$
+% Remark.  This can get complicated.  E.g. 
+%\observedVector\rowindex{\obsIndex}.  See if I can make a special character again.
+
+% ATTEMPT 2
+\newcommand{\rowify}[2]{{#1}^{({#2})}}
+% Usage: \rowify{\+x}{i}.
+% Result: \+x^{i)
+
+% ATTEMPT 3 [*** PREFERRED ***] 
+
+% Usage:
+% a^^b  -> produces a^{(b)}
+
+% Reference:
+% https://tex.stackexchange.com/questions/655988/how-to-define-a-new-character-while-avoiding-clashes-with-existing-character-def/655995?noredirect=1#comment1634672_655995
+
+\makeatletter
+\newcommand{\ashman@hat}{\futurelet\ashman@next\ashman@@hat}
+\newcommand{\ashman@@hat}{%
+  \if\noexpand\ashman@next\string^%
+    \expandafter\ashman@hathat
+  \else
+    \expandafter\sp
+  \fi
+}
+\newcommand{\ashman@hathat}[2]{\sp{(#2)}}
+
+\begingroup
+\catcode`^=\active
+\global\let^\ashman@hat
+\endgroup
+
+\AtBeginDocument{\mathcode`^="8000 \catcode`^=12 }
+\makeatother
+
+
+%%%
+% PUT THINGS IN QUOTES CORRECTLY
+%%%
+% Usage \enquote{Thanks!}.
+% This produces output "Thanks." which is actually correctly compiled.
+% Reference: https://tex.stackexchange.com/questions/52351/quote-marks-are-backwards-using-texmaker-pdflatex
+\usepackage[autostyle]{csquotes}
+
+
+%%% THICKER CDOT
+% USAGE: \bigcdot
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+%%% ETC
+\definecolor{lightred}{HTML}{FFCCCC}
+\definecolor{lightblue}{HTML}{CCEEFF}

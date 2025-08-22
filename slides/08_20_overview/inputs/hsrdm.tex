@@ -1,0 +1,93 @@
+  \tikz{ %
+  
+%%% 
+% VARIABLES
+%%%
+
+
+%% system observation
+\node[latent, thick](s0){$\systemState_0^{\phantom{(j)}}$}; %
+ \node[latent, right=of s0, thick](s1){$\systemState_1^{\phantom{(j)}}$};%
+ \node[latent, right=of s1, thick](s2){$\systemState_2^{\phantom{(j)}}$};%
+ \node[latent, right=of s2, thick](s3){$\systemState_3^{\phantom{(j)}}$}; %
+
+ 
+ 
+%% discrete observation for jx-th entity
+\node[latent, below=of s0, thick](z0j){$\state_0^^\entity$}; %
+ \node[latent, below=of s1, thick](z1j){$\state_1^^\entity$};%
+ \node[latent, below=of s2, thick](z2j){$\state_2^^\entity$}; %
+ \node[latent, below=of s3, thick](z3j){$\state_3^^\entity$}; %
+ 
+
+%% observation for j-th entity
+\node[obs, below=of z0j, thick](x0j){$\observation_0^^\entity$}; %
+ \node[obs, below=of z1j, thick](x1j){$\observation_1^^\entity$};%
+ \node[obs, below=of z2j, thick](x2j){$\observation_2^^\entity$}; %
+ \node[obs, below=of z3j, thick](x3j){$\observation_3^^\entity$}; %
+
+%%%
+% Colors
+%%%
+\definecolor{deepcarrotorange}{rgb}{0.91, 0.41, 0.17}
+\definecolor{darkspringgreen}{rgb}{0.09, 0.45, 0.27}
+\definecolor{hanblue}{rgb}{0.27, 0.42, 0.81}
+
+%%%
+% Boxes
+%%%
+
+\begin{scope}[on background layer]
+\node[draw=deepcarrotorange!20,fill=deepcarrotorange!20, thick,fit=(s0) (s1) (s2) (s3)] {};
+\node[draw=darkspringgreen!20,fill=darkspringgreen!20, thick,fit=(z0j) (z1j) (z2j) (z3j)] {};
+%\node[draw=hanblue!20,fill=hanblue!20, thick,fit=(x0j) (x1j) (x2j) (x3j)] {};
+\end{scope}
+  
+
+
+%%%
+% Descriptions
+%%%
+\node[const, left=of s0]{\color{deepcarrotorange}{Discrete states for system}};
+ \node[const, left=of z0j]{\color{darkspringgreen}{Discrete states for entity}};
+ \node[const, left=of x0j]{{Observations}};
+ %\node[const, left=of x0j]{\color{hanblue}{Observations}};
+%%% 
+% PLATES 
+%%%
+%% Around time series 
+\plate[inner sep=0.25cm, xshift=0cm, yshift=0cm] {plate0} {(x0j)(x1j)(x2j)(x3j)(z0j)(z1j)(z2j)(z3j)} {$\numEntities$ = \# Entities}; %
+%%%% 
+% EDGES
+%%%
+% observation sequence
+\edge[thick]{x0j}{x1j};
+\edge[thick]{x1j}{x2j};
+\edge[thick]{x2j}{x3j};
+% state sequence for entities
+\edge[thick]{z0j}{z1j};
+\edge[thick,red]{z1j}{z2j};
+\edge[thick]{z2j}{z3j};
+% state sequence for system
+\edge[thick]{s0}{s1};
+\edge[thick]{s1}{s2};
+\edge[thick,blue]{s2}{s3};
+% generate observation
+\edge[thick]{z0j}{x0j};
+\edge[thick]{z1j}{x1j};
+\edge[thick]{z2j}{x2j};
+\edge[thick]{z3j}{x3j};
+% generate state sequence for entities
+\edge[thick]{s0}{z0j};
+\edge[thick]{s1}{z1j};
+\edge[thick,red]{s2}{z2j};
+\edge[thick]{s3}{z3j};
+% recurrence from observation to entity states
+\edge[thick]{x0j}{z1j};
+\edge[thick,red]{x1j}{z2j};
+\edge[thick]{x2j}{z3j};
+% recurrence from observation to system states
+\edge[thick]{x0j}{s1};
+\edge[thick]{x1j}{s2};
+\edge[thick,blue]{x2j}{s3};
+  }
