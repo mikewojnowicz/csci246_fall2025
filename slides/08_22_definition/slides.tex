@@ -1,0 +1,262 @@
+\documentclass[10pt]{beamer}
+
+%%%
+% PREAMBLE FOR THIS DOC 
+%%%
+%https://tex.stackexchange.com/questions/68821/is-it-possible-to-create-a-latex-preamble-header
+\usepackage{/Users/miw267/Repos/csci246_spring2025/slides/preambles/beamer_preamble_for_CSCI246}
+
+
+%%% TRY TO RESHOW TOC AT EACH SECTION START (with current section highlighted)
+% Reference: https://tex.stackexchange.com/questions/280436/how-to-highlight-a-specific-section-in-beamer-toc
+\newcommand\tocforsect[2]{%
+  \begingroup
+  \edef\safesection{\thesection}
+  \setcounter{section}{#1}
+  \tableofcontents[#2,currentsection]
+  \setcounter{section}{\safesection}
+  \endgroup
+}
+
+
+\usepackage[normalem]{ulem} % for strikeout (\sout)
+
+%%%% HERES HOW TO DO IT CORRECTLY
+% FIRST IN .STY FILE, DO
+%\usetheme[sectionpage=none]{metropolis}
+% THEN AT EACH SECTION DO
+%\begin{frame}{Outline}
+%  \tableofcontents[currentsection]	
+%\end{frame}
+
+
+
+%\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{footline}[frame number]{}
+
+
+%%%
+% DOCUMENT
+%%%
+
+\begin{document}
+
+%\maketitle
+
+%% Title page frame
+%\begin{frame}
+%    \titlepage 
+%\end{frame}
+
+
+
+\title{08/22/2025: Definition}
+\author{CSCI 246: Discrete Structures}
+\date{Textbook reference: Sec 3, Scheinerman}
+
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+\begin{frame}
+\begin{myyellowbox}[title=Today's Agenda]
+\begin{itemize}
+	\item Overview / Q \& A ($\approx$ 5 mins)
+	\item Group exercises ($\approx$ 25 mins)
+	\item Discussion ($\approx$ 20 minutes)
+\end{itemize}
+
+
+\end{myyellowbox}
+\vfill 
+
+\end{frame}
+
+
+
+
+
+%
+%\begin{frame}[standout]
+%Q\&A On Previous Group Exercises
+%\end{frame}
+
+\begin{frame}{Integers}
+
+\begin{mygreenbox}
+\textbf{Definition.} The set of \textit{integers}, denoted $\mathbb{Z}$, is given by
+\[\mathbb{Z} \defeq \set{\hdots, -3, -2, -1, 0, 1, 2, 3, \hdots}. \]
+That is, the integers are the positive whole numbers, the negative whole numbers, and zero.
+\end{mygreenbox}
+
+\end{frame}
+
+
+\begin{frame}[standout]
+Group exercises
+\end{frame}
+
+\begin{frame}{Random group assignments}
+\footnotesize 
+\vfill 
+\begin{columns}
+\begin{column}{0.33\textwidth}
+Aaron Christensen: 3 \\ 
+Aidan Sinclair: 13 \\ 
+Brendan Kelly: 1 \\ 
+Buggy Garza: 6 \\ 
+Cedric Jefferson: 17 \\ 
+Conner Brost: 7 \\ 
+Connor Graville: 3 \\ 
+David Knauert: 1 \\ 
+David Oswald: 4 \\ 
+Elias Martin: 5 \\ 
+Ericson O'Guinn: 8 \\ 
+Erik Halverson: 7 \\ 
+Francis Bush: 9 \\ 
+Garrett Miller: 15 \\ 
+George Cutler: 16 \\ 
+Georgia Franks: 2 \\ 
+Gregor Schmidt: 3 \\\end{column}
+\begin{column}{0.33\textwidth}
+Hakyla Riggs: 6 \\ 
+Izayah Abayomi: 11 \\ 
+Jacob Ketola: 10 \\ 
+Jacob Ruiz: 17 \\ 
+Jaden Hampton: 5 \\ 
+Jeremy Ness: 10 \\ 
+Jonah Day: 1 \\ 
+Karter Gress: 8 \\ 
+Kyle Hoerner: 10 \\ 
+Landry Clarke: 4 \\ 
+Leon BirdHat: 5 \\ 
+Lillian Ziegler: 11 \\ 
+Matthew Rau: 9 \\ 
+Micah Miller: 14 \\ 
+Michael Pitman: 15 \\ 
+Nathan Campbell: 11 \\\end{column}
+\begin{column}{0.33\textwidth}
+Nathan Hooley: 15 \\ 
+Nicholas Rugani: 8 \\ 
+Noah Andersson: 14 \\ 
+Olivia Greuter: 12 \\ 
+Peter Van Vleet: 14 \\ 
+Pierce Dotson: 9 \\ 
+Quinn Carlson: 2 \\ 
+Ridley Christoferson: 16 \\ 
+Riley Smith: 6 \\ 
+Sierra Holleman: 13 \\ 
+Tanner Gramps: 7 \\ 
+Timothy True: 13 \\ 
+Titus Sykes: 12 \\ 
+Trey Randall: 4 \\ 
+William Grant: 16 \\ 
+William Sheldon: 12 \\ 
+Zachary Reller: 2 \\
+\end{column}
+\end{columns}
+\vfill
+\end{frame}
+
+\begin{frame}{Group exercises}
+\begin{enumerate}
+\item  Please determine which of the following are true or false; use Definition 3.2 to explain your answers: (a) $3 \mid 100$, (b) $3 \mid 99$, (c) $-3 \mid 3$, (d) $-5 \mid -5$, (e) $-2 \mid -7$, (f) $0 \mid 4$, (g) $4 \mid 0$, (h) $0 \mid 0$.
+\item None of the following is a prime.  Explain why they fail to satisfy Definition 3.5.  Which of the numbers is composite? (a) 21, (b) 0, (c) $\pi$, (d) $\half$, (e) -2, (f) -1.  
+\item Define what it means for an integer to be a \textit{perfect square}.  For example, the integers 0,1,4,9, and 16 are perfect squares.  Your definition should begin: \\
+\hspace{0.5cm} An integer $x$ is a \textit{perfect square} provided ...
+\item Here is a possible alternative to Definition 3.2: We say that $a$ is \textit{divisible} by $b$ provided $\frac{a}{b}$ is an integer.  Explain why this alternative definition is different from Definition 3.2.  \\
+\hspace{0.5cm} Here, \textit{different} means that the definitions specify \textit{different concepts}.  So to answer this question, you should find integers $a$ and $b$ such that $a$ is divisible by $b$ according to one definition, but $a$ is not divisible by $b$ according to the other definition. 
+\end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}{Solution to group exercise \#1}
+%\textbf{Problem.} Please determine which of the following are true or false; use Definition 3.2 to explain your answers.
+
+\begin{mygreenbox}
+\textbf{Definition.} Let $a$ and $b$ be integers.  We say $a$ is \textit{divisible} by $b$, written $b \mid a$, provided there is an integer $c$ such that $bc=a$. 	
+\end{mygreenbox}
+\vspace{-.2cm}
+\textbf{Solution.}
+\begin{enumerate}[a.]
+\item $3 \mid 100$? \pause False. There is no integer $c$ such that $3c=100$.  (Why? \pause  Note that there is exactly one number $c=\frac{100}{3}=33 \frac{1}{3}$ that satisfies the equation, but this $c$ is not an integer.) \pause 
+\item $3 \mid 99$? \pause True. There is an integer $c=33$ such that $3c=99$. \pause 
+\item $-3 \mid 3$? \pause True. There is an integer $c=-1$ such that $-3c=3$. \pause 
+\item $-5 \mid -5$? \pause True. There is an integer $c=1$ such that $-5c=-5$. \pause 
+\item $-2 \mid -7$? \pause False. There is no integer $c$ such that $-2c=-7$.   \footnotesize (The number $c=\frac{7}{2}$ uniquely satisfies the equation, but $c$ is not an integer.) \normalsize \pause 
+\item $0 \mid 4$? \pause False. There is no integer $c$ such that $0c=4$. (Why?  \pause Note that $0c=0$ for all $c$.) \pause  
+\item $4 \mid 0$? \pause True. There is an integer $c=0$ such that $4c=0$. \pause  
+\item $0 \mid 0$? \pause  True. There is an integer $c$ such that $0c=0$. In fact, there are \textit{infinitely} many integer-valued solutions!
+\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}{Solution to group exercise \#2 (first part)}
+\textbf{Problem.} None of the following numbers is prime. Explain why they fail to satisfy Definition 3.5.
+\vfill 
+
+\begin{mygreenbox}
+\textbf{Definition.} An integer $p$ is called \textit{prime} provided that $p>1$ and the only positive divisors of $p$ are $p$ and $1$.	
+\end{mygreenbox}
+
+\vfill 
+\textbf{Solution.}
+\begin{enumerate}[a.]
+\item 21? \pause This is not prime since $3 \mid 21$, and $3 \not\in \set{1,21}$. \pause 
+\item 0? \pause This is not prime since $0<1$. \pause 
+\item $\pi$? \pause This is not prime since $\pi \not\in \mathbb{Z}$. \pause 
+\item $\half$? \pause This is not prime since $\half \not\in \mathbb{Z}$. \pause 
+\item -2? \pause This is not prime since $-2<1$. \pause 
+\item -1? \pause This is not prime since $-1<1$. \pause 
+\end{enumerate}
+\vfill \vfill \vfill 
+\textbf{Remark.} In the above, I used the shorthand notation $x \not\in A$, which means that $x$ is not a member of the set $A$. 
+\end{frame}
+
+
+\begin{frame}{Solution to group exercise \#2 (second part)}
+\textbf{Problem.} None of the following numbers is prime. Which is composite?
+\vfill 
+
+\begin{mygreenbox}
+\textbf{Definition.} An integer $a$ is called \textit{composite} provided that there is an integer $b$ such that $1<b<a$ and $b \mid a$.	
+\end{mygreenbox}
+
+\vfill 
+\textbf{Solution.}
+\begin{enumerate}[a.]
+\item 21? \pause Composite, since $3 \mid 21$, and $1<3<21$. \pause 
+\item 0? \pause Not composite, since $0<1$. \pause 
+\item $\pi$? \pause Not composite, since $\pi \not\in \mathbb{Z}$. \pause 
+\item $\half$? \pause Not composite, since $\half \not\in \mathbb{Z}$. \pause 
+\item -2? \pause Not composite, since $-2 < 1$. \pause 
+\item -1? \pause Not composite, since $-1 < 1$. \pause 
+\end{enumerate}
+\vfill 
+\textbf{Remark.} Note from the definition that the integer $a$ can be composite only if $a>1$. We use this fact to answer parts b, e, and f.
+\end{frame}
+
+\begin{frame}{Solution to group exercise \#3}
+
+\textbf{Problem.} Define what it means for an integer to be a \textit{perfect square}.  For example, the integers 0,1,4,9, and 16 are perfect squares.  
+
+\pause 
+\vfill 
+\textbf{Solution.} An integer $x$ is a \textit{perfect square} provided there is an integer $y$ such that $x=y^2$.
+
+\end{frame}
+
+\begin{frame}{Solution to group exercise \#4}
+
+\textbf{Problem.} Here is a possible alternative to Definition 3.2: We say that $a$ is \textit{divisible} by $b$ provided $\frac{a}{b}$ is an integer.  Explain why this alternative definition is different from Definition 3.2.  \\
+\hspace{0.5cm} Here, \textit{different} means that the definitions specify \textit{different concepts}.  So to answer this question, you should find integers $a$ and $b$ such that $a$ is divisible by $b$ according to one definition, but $a$ is not divisible by $b$ according to the other definition.
+
+\pause 
+\vfill 
+\textbf{Solution.} Consider $a=b=0$. Then,  $a \mid b$ according to Definition 3.2 (as we discovered in group exercise \#1h). However, $\frac{a}{b}$ is not an integer.
+\end{frame}
+
+
+\end{document}
