@@ -267,6 +267,45 @@ Some other terminology which means the same thing:
 	
 \end{frame}
 
+\begin{frame}{If-then: Valid argument and logical fallacy}
+
+% First green box
+\begin{mygreenbox}[title=\textit{Modus Ponens} (A valid argument) \greencheck]
+    \begin{minipage}[t]{0.35\linewidth}
+    \textbf{Structure} \\
+       If A, then B. \\
+       A. \\
+       Therefore B.
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.60\linewidth}
+    \textbf{Example} \\
+       If it is raining, the ground is wet. \\
+       It is raining. \\
+       Therefore, the ground is wet.
+    \end{minipage}
+\end{mygreenbox}
+
+\vspace{0.5cm}
+\pause 
+
+\begin{myredbox}[title=\textit{Affirming the Consequent} (A logical fallacy) \redx]
+    \begin{minipage}[t]{0.35\linewidth}
+    \textbf{Structure} \\
+       If A, then B. \\
+       B. \\
+       Therefore A.
+    \end{minipage}\hfill
+     \begin{minipage}[t]{0.60\linewidth}
+    \textbf{Example} \\
+       If it is raining, the ground is wet. \\
+       The ground is wet. \\
+       Therefore, it is raining.
+    \end{minipage}
+\end{myredbox}
+
+\end{frame}
+
+
 
 %%%% Section
 \begin{frame}[standout]
@@ -280,12 +319,17 @@ Outline for Mini-Lecture:
 
 \end{frame}
 
-\begin{frame}{If and only if: Definition}
+\begin{frame}{If and only if: Definition and shorthand}
 
 \begin{mygreenbox}[title=\textit{If and only if} statements: Definition]
 
 \[ \explaintermbrace{A if and only if B}{A \iff B} \quad \text{means} \quad \explaintermbrace{A only if B}{(A \implies B)} \; \texttt{and} \; \explaintermbrace{A if B}{(A  \impliedby B)} \] 
 \end{mygreenbox}
+
+\pause 
+\vfill 
+
+\colorbox{red!30}{\textbf{Shorthand.}}  For convenience, we can abbreviate \texttt{A if and only if B} as \texttt{A iff B}.
 
 \end{frame}
 
@@ -341,12 +385,12 @@ F & F & \green{T}  \\
 \colorbox{blue!30}{\textbf{Summary.}} A and B are \underline{both} True or \underline{both} False.
 \pause  
 \vfill  
-\colorbox{green!30}{\textbf{Example.}} Let $A$ = \texttt{Labor Day is in this month}, $B$ = \texttt{This month is September}.  Here, $A \iff B$.  (Check this against the truth table.)
+\colorbox{green!30}{\textbf{Example.}} Let $A$ = \texttt{This month contains Labor Day}, $B$ = \texttt{This month is September}.  Here, $A \iff B$.  (Check this against the truth table.)
 \end{frame}
 
 
 \begin{frame}{If and only if: Set theoretic perspective}
-Let \red{$A$} = \texttt{Labor Day is in this month} and \blue{$B$} = \texttt{This month is September}.   Then $A \iff B$!
+Let \red{$A$} = \texttt{This month contains Labor Day} and \blue{$B$} = \texttt{This month is September}.   Then $A \iff B$!
 
 \begin{center}
 \begin{tikzpicture}[scale=0.65]
@@ -389,7 +433,7 @@ Let \red{$A$} = \texttt{Labor Day is in this month} and \blue{$B$} = \texttt{Thi
 \end{frame}
 
 
-\begin{frame}[fragile]{If and only if: Relevance to programming}
+\begin{frame}[fragile]{If and only if: Why should computer scientists care?}
 
 Consider the following theorem.
 \vfill 
@@ -398,9 +442,7 @@ A connected undirected graph with $n$ vertices has a cycle if and only if it has
 \end{mygreenbox}
 \vfill 
 
-Thanks to the \qq{iff}, you know that edge count alone is enough to decide whether a cycle exists.
-\vfill 
-Instead of running a full DFS or Union-Find cycle detection algorithm, you can just check counts:
+Thanks to the \qq{iff}, you know that edge count alone is enough to decide whether a cycle exists.  Instead of running a full DFS or Union-Find cycle detection algorithm, you can just check counts:
 
 \vfill 
 
@@ -408,6 +450,41 @@ Instead of running a full DFS or Union-Find cycle detection algorithm, you can j
 def has_cycle(num_vertices, edges):
     return len(edges) >= num_vertices
 \end{lstlisting}
+
+\vfill \pause 
+
+\colorbox{red!30}{\textbf{Take home.}}  Why would computer scientists care about theorems of the  form \qq{A iff B}?  It can sometimes happen that what we really want is A, but that’s very hard to code up.  Thanks to the theorem, we can just code up B instead, because it turns out (perhaps surprisingly!) that it's the exact same thing.
+\end{frame}
+
+
+
+\begin{frame}{If and only if: How is it related to $==$?}
+\colorbox{red!30}{\textbf{Student question.}} How does iff relate to $==$ (the comparison operator in many programming languages)?
+
+\vfill \pause 
+
+\begin{myyellowbox}[title=Case Study]
+Consider propositions $A,B$ as binary-valued functions of $x$, which are elements of some set $\mathcal{X}$. For instance, perhaps 
+%
+\begin{align*}
+\mathcal{X} &= \set{\text{months since Labor Day was created (9/1882) until now}}  \\
+A(x) &= \text{month $x$ has Labor Day in it} \\
+B(x) &= \text{month $x$ is September} 
+\end{align*}
+%
+Then \texttt{A iff B} \alert{means}
+\[\text{for all} \; x \in \mathcal{X}, \qquad A(x) \explaintermbrace{written == in code}{=} B(x) \]
+\end{myyellowbox}
+
+\vfill \pause 
+
+\colorbox{green!30}{\textbf{Summary.}} iff means that $==$ returns True for \underline{all} cases of two propositions.
+%\begin{itemize}
+%	\item $==$ can be used to heck if two binary elements have the same truth value
+%	\item iff means that $==$ is true for \underline{all} cases of two propositions
+%\end{itemize}
+
+
 \end{frame}
 
 
