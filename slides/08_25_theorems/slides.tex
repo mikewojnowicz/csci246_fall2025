@@ -21,6 +21,19 @@
 
 
 
+\lstset{
+  language=Python,
+  backgroundcolor=\color{black!5},
+  keywordstyle=\color{blue}\bfseries,
+  stringstyle=\color{orange},
+  commentstyle=\color{green!60!black},
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  frame=single,
+  showstringspaces=false
+}
+
 %%%
 % DOCUMENT
 %%%
@@ -96,13 +109,31 @@ F & F & \red{?} &\red{?}  & \red{?}
 \end{frame}
 
 
+\begin{frame}[standout]
+Outline for Mini-Lecture:
+\begin{itemize}
+\item \textbullet \quad If-then statements
+\item \textbullet \quad If-and-only-if statements
+\item \textbullet \quad Quiz solution
+\item \textbullet \quad The big picture: Propositional logic
+\end{itemize}
+
+\end{frame}
+
 %%%% Section
 \begin{frame}[standout]
-If A, then B
+Outline for Mini-Lecture:
+\begin{itemize}
+\item \alert{\textbullet \quad If-then statements}
+\item \textbullet \quad If-and-only-if statements
+\item \textbullet \quad Quiz solution
+\item \textbullet \quad The big picture: Propositional logic
+\end{itemize}
+
 \end{frame}
 
 
-\begin{frame}{If A, then B: Truth Table}
+\begin{frame}{If-then: Truth Table}
 \label{slide:truth_table_for_if_A_then_B}
 Given two propositions $A$ and $B$, the statement \qq{If A, then B} (that is, the property $A  \implies B$) holds whenever following \qq{truth table} applies:
 
@@ -129,7 +160,7 @@ F & F & \green{T}  \\
 
 
 
-\begin{frame}{If A, then B: Set Theoretic Perspective}
+\begin{frame}{If-then: Set Theoretic Perspective}
 Let \red{$A$} = \texttt{This person lives in Bozeman} and \blue{$B$} = \texttt{This person lives in Montana}.   Then $A \implies B$!
 
 \begin{columns}[T] % align columns at the top
@@ -224,7 +255,7 @@ F & F & \green{T}  \\
 \end{frame}
 
 
-\begin{frame}{If A, then B: Other jargon}
+\begin{frame}{If-then: Other jargon}
 
 Some other terminology which means the same thing:
 \begin{itemize}
@@ -239,24 +270,27 @@ Some other terminology which means the same thing:
 
 %%%% Section
 \begin{frame}[standout]
-A if and only if B
+Outline for Mini-Lecture:
+\begin{itemize}
+\item \textbullet \quad If-then statements
+\item \alert{\textbullet \quad If-and-only-if statements}
+\item \textbullet \quad Quiz solution
+\item \textbullet \quad The big picture: Propositional logic
+\end{itemize}
+
 \end{frame}
 
+\begin{frame}{If and only if: Definition}
 
-\begin{frame}
-
-%The biconditional \texttt{A if and only if B} (written $A \iff B$) can be defined as $(A \implies B) \, \texttt{and} \, (B \implies A)$.
-
-\vfill \pause 
-\begin{myredbox}[title=\textit{If and only if} statements: Main Idea]
+\begin{mygreenbox}[title=\textit{If and only if} statements: Definition]
 
 \[ \explaintermbrace{A if and only if B}{A \iff B} \quad \text{means} \quad \explaintermbrace{A only if B}{(A \implies B)} \; \texttt{and} \; \explaintermbrace{A if B}{(A  \impliedby B)} \] 
-\end{myredbox}
+\end{mygreenbox}
 
 \end{frame}
 
 
-\begin{frame}{A if and only if B: Details}
+\begin{frame}{If and only if: Truth Table}
 \footnotesize
  The truth table for the ``\texttt{and}" operator (also written $\land$) is given by  
 \begin{center}
@@ -288,7 +322,7 @@ F & F & \green{T} & \green{T} & \green{T}
 
 \end{frame}
 
-\begin{frame}{A if and only if B: Truth Table}
+\begin{frame}{If and only if: Truth Table}
 
 Given two propositions $A$ and $B$, the statement \qq{A if and only if B} (that is, the property $A  \iff B$) holds whenever following \qq{truth table} applies:
 
@@ -311,7 +345,7 @@ F & F & \green{T}  \\
 \end{frame}
 
 
-\begin{frame}{A if and only if B: Set theoretic perspective}
+\begin{frame}{If and only if: Set theoretic perspective}
 Let \red{$A$} = \texttt{Labor Day is in this month} and \blue{$B$} = \texttt{This month is September}.   Then $A \iff B$!
 
 \begin{center}
@@ -348,12 +382,47 @@ Let \red{$A$} = \texttt{Labor Day is in this month} and \blue{$B$} = \texttt{Thi
 
 \end{frame}
 
+\begin{frame}{If and only if: Big picture}
+
+ $A \iff B$  means that $A$ and $B$ are just two different descriptions of the same thing!
+ 	
+\end{frame}
+
+
+\begin{frame}[fragile]{If and only if: Relevance to programming}
+
+Consider the following theorem.
+\vfill 
+\begin{mygreenbox}[title=\textbf{Theorem (Graph Theory)}]
+A connected undirected graph with $n$ vertices has a cycle if and only if it has at least $n$ edges.	
+\end{mygreenbox}
+\vfill 
+
+Thanks to the \qq{iff}, you know that edge count alone is enough to decide whether a cycle exists.
+\vfill 
+Instead of running a full DFS or Union-Find cycle detection algorithm, you can just check counts:
+
+\vfill 
+
+\begin{lstlisting}
+def has_cycle(num_vertices, edges):
+    return len(edges) >= num_vertices
+\end{lstlisting}
+\end{frame}
 
 
 %%%% Section
 \begin{frame}[standout]
-Solution to practice quiz
+Outline for Mini-Lecture:
+\begin{itemize}
+\item \textbullet \quad If-then statements
+\item \textbullet \quad If-and-only-if statements
+\item \alert{\textbullet \quad Quiz solution}
+\item \textbullet \quad The big picture: Propositional logic
+\end{itemize}
+
 \end{frame}
+
 
 
 \begin{frame}{Solution to practice quiz}
@@ -377,8 +446,14 @@ F & F & \green{T} & \green{T} & \green{T}
 
 %%%% Section
 \begin{frame}[standout]
-The Big Picture: \\
-Propositional Logic
+Outline for Mini-Lecture:
+\begin{itemize}
+\item \textbullet \quad If-then statements
+\item \textbullet \quad If-and-only-if statements
+\item \textbullet \quad Quiz solution
+\item \alert{\textbullet \quad The big picture: Propositional logic}
+\end{itemize}
+
 \end{frame}
 
 
