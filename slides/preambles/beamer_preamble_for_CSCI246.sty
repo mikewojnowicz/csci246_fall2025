@@ -678,8 +678,8 @@
     }
 }
 
-\newtcolorbox{mydef}[1][]{mygreenbox, #1} % Environment for yellow box
-\newtcolorbox{mygreenbox}[1][]{mygreenbox, #1} % Environment for yellow box
+\newtcolorbox{mydef}[1][]{mygreenbox, #1} % Environment for green box
+\newtcolorbox{mygreenbox}[1][]{mygreenbox, #1} % Environment for green box
 
 
 \tcbset{
@@ -715,6 +715,25 @@
     }
 }
 \newtcolorbox{myredbox}[1][]{myredbox, #1} % Environment for yellow box
+
+
+% Define a new environment with blue shaded background
+\tcbset{
+    mybluebox/.style={
+        colback=blue!20,      % Light green background
+        colframe=blue!50!black, % Darker green frame
+        coltext=black,          % Text color
+        boxrule=1pt,            % Border thickness
+        arc=4mm,                % Rounded corners
+	    left=5pt,               % Left padding
+        right=5pt,              % Right padding
+        top=5pt,                % Top padding
+        bottom=5pt              % Bottom padding
+    }
+}
+
+\newtcolorbox{mybluebox}[1][]{mybluebox, #1} % Environment for green box
+
 
 %%%
 % CHANGE BACKGROUND COLOR IN CELL TABLES

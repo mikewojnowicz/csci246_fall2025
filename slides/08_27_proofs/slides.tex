@@ -1,0 +1,418 @@
+\documentclass[10pt]{beamer}
+
+%%%
+% PREAMBLE FOR THIS DOC 
+%%%
+%https://tex.stackexchange.com/questions/68821/is-it-possible-to-create-a-latex-preamble-header
+\usepackage{/Users/miw267/Repos/csci246_fall2025/slides/preambles/beamer_preamble_for_CSCI246}
+
+
+
+%%% TRY TO RESHOW TOC AT EACH SECTION START (with current section highlighted)
+% Reference: https://tex.stackexchange.com/questions/280436/how-to-highlight-a-specific-section-in-beamer-toc
+\newcommand\tocforsect[2]{%
+  \begingroup
+  \edef\safesection{\thesection}
+  \setcounter{section}{#1}
+  \tableofcontents[#2,currentsection]
+  \setcounter{section}{\safesection}
+  \endgroup
+}
+
+
+%%%% HERES HOW TO DO IT CORRECTLY
+% FIRST IN .STY FILE, DO
+%\usetheme[sectionpage=none]{metropolis}
+% THEN AT EACH SECTION DO
+%\begin{frame}{Outline}
+%  \tableofcontents[currentsection]	
+%\end{frame}
+
+
+
+%\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{footline}[frame number]{}
+
+
+%%%
+% DOCUMENT
+%%%
+
+\begin{document}
+
+%\maketitle
+
+%% Title page frame
+%\begin{frame}
+%    \titlepage 
+%\end{frame}
+
+
+
+
+
+\title{Wednesday 08/27/2025: Proofs}
+\author{CSCI 246: Discrete Structures}
+\date{Textbook reference: Sec. 5, Scheinerman}
+
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+
+\begin{frame}
+
+\begin{mygreenbox}[title=Announcements]
+\begin{itemize}
+\item \textbf{Forming groups} - If you end up in a group with one person, feel free to join another one (preferably one with 2 people).
+\item \textbf{Recruiting help during group exercises} - Please grab me or Paul (the TA) if you'd like help.  Also feel free to reach out to another group. Finally, feel free to consult the textbook.
+\item \textbf{Weekly quiz this Friday} - It will cover definitions (Sec 3), theorems (Sec 4), and proofs (Sec 5).  Be sure that you've done the readings and know how to do the group exercises. 
+\end{itemize}
+
+\end{mygreenbox}
+
+\vfill  \vfill 
+
+
+\begin{myyellowbox}[title=Today's Agenda]
+\begin{itemize}
+	\item Theorems: additional thoughts, review group ex. ($\approx$ 15 mins)
+	\item Proofs: practice quiz, mini-lecture ($\approx$ 10 mins)
+	\item Proofs: Group exercises ($\approx$ 15 mins) and review ($\approx$ 10 mins)
+\end{itemize}
+
+
+\end{myyellowbox}
+\vfill 
+
+\end{frame}
+
+
+\begin{frame}{Study Guide For Quiz 1}
+
+
+\begin{myredbox}[title=Readings (1 question)]
+Sec. 3 (Definitions)
+\begin{itemize}
+\item Be familiar with the definitions (understand what they say and how to apply them).  
+\end{itemize}
+Sec. 4 (Theorems)
+\begin{itemize}
+\item Understand these truth tables: \texttt{if-then, iff, and, or, not}.
+\item Understand vacuous truths.
+\end{itemize}
+Sec 5 (Proofs)
+\begin{itemize}
+\item Know how to prove Props 5.2, 5.3, 5.5, and 5.6.
+\end{itemize}
+
+\end{myredbox}
+
+\vfill 
+
+\begin{myyellowbox}[title=Group exercises (2 questions)]
+Know how to do all of the group exercises from these sections, except for the Bonus problem from Sec 4.
+\end{myyellowbox}
+
+
+\end{frame}
+
+
+
+%%%% Section
+\begin{frame}[standout]
+Outline for today's material
+\begin{itemize}
+\item \textbullet \quad Practice quiz
+\item \textbullet \quad Two proof templates
+\item \textbullet \quad Group exercises
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[standout]
+Outline for today's material
+\begin{itemize}
+\item \textbullet \quad \alert{Practice quiz}
+\item \textbullet \quad Two proof templates
+\item \textbullet \quad Group exercises
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Practice Quiz}
+
+\vfill 
+
+ \begin{quiz}[title=Practice Quiz Question]
+Prove that the the sum of two even integers is even.\\
+Use the appropriate proof template from the textbook. 
+\end{quiz}
+
+
+\vfill \vfill 
+
+%You may want to use the following definitions.
+
+\begin{mydef}[title=Scheinerman Definition 3.1 (\textbf{Even})]
+An integer is called \textit{even} provided it is divisible by two.
+\end{mydef}
+
+
+\begin{mydef}[title=Scheinerman Definition 3.2 (\textbf{Divisible})]
+Let $a$ and $b$ be integers.  We say that $a$ is \textit{divisible} by $b$ provided there is an integer $c$ such that $bc=a$.  We also say that $b$ \textit{divides} $a$, or $b$ is a \textit{factor} of $a$, or $b$ is a \textit{divisor} of $a$.  The notation for this is $b|a$. 
+\end{mydef}
+
+
+
+
+
+\end{frame}
+
+
+
+\begin{frame}{Solution Sketch}
+\textbf{Proposition.} The sum of two even integers is even.
+
+\textbf{Proof.}
+
+\begin{tabularx}{\textwidth}{|L{3cm}|X|}
+\hline \textbf{Annotation} & \textbf{Main Text} \\ \hline
+ \hlorange{Convert Prop. to ``if-then" form} &  \hlorange{We show that if $x$ and $y$ are even integers, then $x+y$ is even.} \\ \hline
+\hlblue{State ``if"} & \hlblue{Let $x$ and $y$ be even integers} \\ \hline
+\hlgreen{Unravel defs.} & \hlgreen{Then by Defs. 3.1 and 3.2, there exist integers $a,b$ such that $x=2a$ and $y=2b$.} \\ \hline
+\hlred{*** The glue ***} & \hlred{What goes here?!?!} \\ \hline
+ \hlgreen{Unravel defs.} & \hlgreen{So there is an integer $c$ such that $x+y=2c$.} \\ \hline
+  \hlblue{State ``then"} & \hlblue{Hence, $x+y$ is even.} \\ \hline
+\hline
+\end{tabularx}
+\end{frame}
+
+
+\begin{frame}{Solution}
+\textbf{Proposition.} The sum of two even integers is even.
+
+\textbf{Proof.}
+
+\begin{tabularx}{\textwidth}{|L{3cm}|X|}
+\hline \textbf{Annotation} & \textbf{Main Text} \\ \hline
+ \hlorange{Convert Prop. to ``if-then" form} &  \hlorange{We show that if $x$ and $y$ are even integers, then $x+y$ is even.} \\ \hline
+\hlblue{State ``if"} & \hlblue{Let $x$ and $y$ be even integers} \\ \hline
+\hlgreen{Unravel defs.} & \hlgreen{Then by Defs. 3.1 and 3.2, there exist integers $a,b$ such that $x=2a$ and $y=2b$.} \\ \hline
+\hlred{*** The glue ***} &   \hlred{Hence, $x+y = 2a+2b = 2(a+b)$.} \\ \hline
+ \hlgreen{Unravel defs.} & \hlgreen{So there is an integer $c \; \red{=a+b}$ such that $x+y=2c$.} \\ \hline
+  \hlblue{State ``then"} & \hlblue{Hence, $x+y$ is even.} \\ \hline
+\hline
+\end{tabularx}
+\end{frame}
+
+\begin{frame}
+	
+\end{frame}
+
+
+\begin{frame}[standout]
+Outline for today's material
+\begin{itemize}
+\item \textbullet \quad Practice quiz
+\item \textbullet \quad \alert{Two proof templates}
+\item \textbullet \quad Group exercises
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{mybluebox}[title=Proof Template 1: Direct proof of an if-then theorem]
+
+\begin{enumerate}
+	\item Write down the if-then statement you're trying to prove. \pause  
+	\item At the beginning of the proof, write down the \textit{antecedent} (the A in  \texttt{if A then B}) as your assumption. \pause 
+	\item  At the end of the proof, write down the \textit{consequent} (the B in  \texttt{if A then B}) as your conclusion. \pause 
+	\item Unravel the definitions, working forward from the beginning of the proof and backward from the end of the proof. \pause 
+	\item Forge a link between the two halves of the argument.
+\end{enumerate}
+	
+\end{mybluebox}
+	
+\end{frame}
+
+
+\begin{frame}
+
+\begin{mybluebox}[title=Proof Template 2: Direct proof of an if-and-only-if theorem]
+
+To prove a statement of the form \qq{A iff B}:
+\begin{itemize}
+\item ($\implies$) Prove \qq{If A, then B}.
+\item ($\impliedby$) Prove \qq{If B, then A}.
+\end{itemize}
+
+	
+\end{mybluebox}
+	
+\end{frame}
+
+
+\begin{frame}[standout]
+Outline for today's material
+\begin{itemize}
+\item \textbullet \quad Practice quiz
+\item \textbullet \quad Two proof templates
+\item \textbullet \quad \alert{Group exercises}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Random group assignments}
+\footnotesize 
+\begin{columns}
+\begin{column}{0.33\textwidth}
+Aaron Christensen: 10 \\ 
+Aidan Sinclair: 17 \\ 
+Bennett Dijkstra: 6 \\ 
+Brendan Kelly: 7 \\ 
+Buggy Garza: 10 \\ 
+Cedric Jefferson: 12 \\ 
+Conner Brost: 11 \\ 
+Connor Graville: 3 \\ 
+David Knauert: 14 \\ 
+David Oswald: 5 \\ 
+Elias Martin: 4 \\ 
+Ericson O'Guinn: 13 \\ 
+Erik Halverson: 1 \\ 
+Francis Bush: 4 \\ 
+Garrett Miller: 4 \\ 
+George Cutler: 3 \\ 
+Georgia Franks: 13 \\ 
+Gregor Schmidt: 10 \\\end{column}
+\begin{column}{0.33\textwidth}
+Hakyla Riggs: 16 \\ 
+Izayah Abayomi: 8 \\ 
+Jacob Ketola: 8 \\ 
+Jacob Ruiz: 3 \\ 
+Jaden Hampton: 6 \\ 
+Jeremy Ness: 14 \\ 
+Jonah Day: 1 \\ 
+Karter Gress: 7 \\ 
+Kyle Hoerner: 2 \\ 
+Landry Clarke: 9 \\ 
+Leon BirdHat: 5 \\ 
+Lillian Ziegler: 15 \\ 
+Matthew Rau: 6 \\ 
+Matyas Kari: 11 \\ 
+Micah Miller: 17 \\ 
+Michael Pitman: 1 \\\end{column}
+\begin{column}{0.33\textwidth}
+Nathan Campbell: 13 \\ 
+Nathan Hooley: 8 \\ 
+Nicholas Rugani: 15 \\ 
+Noah Andersson: 16 \\ 
+Olivia Greuter: 12 \\ 
+Peter Van Vleet: 17 \\ 
+Pierce Dotson: 14 \\ 
+Quinn Carlson: 9 \\ 
+Ridley Christoferson: 7 \\ 
+Riley Smith: 9 \\ 
+Sierra Holleman: 5 \\ 
+Tanner Gramps: 16 \\ 
+Timothy True: 12 \\ 
+Titus Sykes: 2 \\ 
+Trey Randall: 18 \\ 
+William Grant: 11 \\ 
+William Sheldon: 15 \\ 
+Zachary Reller: 2 \\\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Group exercises}
+\begin{enumerate}
+	\item Prove that the square of an odd integer is odd.
+	\item Prove that the difference between consecutive perfect squares is odd.
+	\item Let $x$ be an integer.  Prove that $0|x$ if and only if $x=0$.
+	\item Prove that an integer is odd if and only if it is the sum of two consecutive integers.
+\end{enumerate}
+	
+\end{frame}
+
+
+\begin{frame}{Group exercise \#1: Solution}
+\textbf{Proposition.} The square of an odd integer is odd.
+
+\textbf{Proof.}
+
+\begin{tabularx}{\textwidth}{|L{3cm}|X|}
+\hline \textbf{Annotation} & \textbf{Main Text} \\ \hline
+ \hlorange{Convert Prop. to ``if-then" form} &  \hlorange{We show that if $x$ is an odd integer, then $x^2$ is odd.} \\ \hline
+\hlblue{State ``if"} & \hlblue{Let $x$ be an odd integer.} \\ \hline
+\hlgreen{Unravel defs.} & \hlgreen{Then by definition of \textit{odd}, there is an integer $a$ such that $x=2a+1$.} \\ \hline
+\hlred{*** The glue ***} &   \hlred{So $x^2= (2a+1)(2a+1) = 4a^2+4a+1 = 2 (2a^2+2a) +1$.} \\ \hline
+ \hlgreen{Unravel defs.} & \hlgreen{So there is an integer $b$ \red{(where $b=2a^2+2a$)} such that $x^2=2b+1$.} \\ \hline
+  \hlblue{State ``then"} & \hlblue{Hence, $x^2$ is odd.} \\ \hline
+\hline
+\end{tabularx}
+\pause 
+\vfill 
+\footnotesize 
+\textbf{Remark.}  You do not need to provide the annotations or colors in your own proofs. I am using them here in the solution to highlight the formulaic structure of an if-then proof.
+\end{frame}
+
+\begin{frame}{Group exercise \#2: Solution}
+\textbf{Proposition.} The difference between consecutive perfect squares is odd.
+
+\textbf{Proof.}
+
+\begin{tabularx}{\textwidth}{|L{3cm}|X|}
+\hline \textbf{Annotation} & \textbf{Main Text} \\ \hline
+ \hlorange{Convert Prop. to ``if-then" form} &  \hlorange{We show that if $x$ and $y$ are consecutive perfect squares, then $x-y$ is odd. } \\ \hline
+\hlblue{State ``if"} & \hlblue{Let $x$ and $y$ be consecutive perfect squares} \\ \hline
+\hlgreen{Unravel defs.} & \hlgreen{Then $x=(z+1)^2$ and $y=z^2$ where $z$ is an integer.} \\ \hline
+\hlred{*** The glue ***} &   \hlred{So $x-y= (z+1)^2 - z^2 = (z^2 + 2z +1) -z^2  = 2z+ 1$.} \\ \hline
+ \hlgreen{Unravel defs.} & \hlgreen{So there is an integer $b$ \red{(where $b=z$)} such that $x-y=2b+1$.} \\ \hline
+  \hlblue{State ``then"} & \hlblue{Hence, $x-y$ is odd.} \\ \hline
+\hline
+\end{tabularx}
+\pause 
+\vfill 
+\footnotesize 
+\textbf{Remark.}  You do not need to provide the annotations or colors in your own proofs. I am using them here in the solution to highlight the formulaic structure of an if-then proof.
+\end{frame}
+
+\begin{frame}{Group exercise \#3: Solution}
+\small 
+\textbf{Proposition.} Let $x$ be an integer.  Prove that $0|x$ if and only if $x=0$.
+
+\textbf{Proof.} We decompose the \textit{if-and-only-if} statement into two \textit{if-then} statements.
+
+\begin{itemize}
+\item[(a)] \hlorange{We show that if $0|x$, then $x=0$.} \hlblue{Let $x$ be an integer such that $0|x$.}  \hlgreen{Then by definition of \textit{divisible}, there is an integer $a$ such that $0 \cdot a = x$.}  \hlred{But $0 \cdot a = 0$.}  \hlblue{Hence $x=0$.}
+\item [(b)]  \hlorange{We show that if $x=0$, then $0|x$.} \hlblue{Let $x=0$.} \hlred{Let $a$ be any integer. (For example, take $a=7$.)  Then $a \cdot 0 =0$.}  \hlgreen{Hence, there is an integer $a$ such that $0 \cdot a = x$.} \hlblue{Hence, $0|x$.}  	
+\end{itemize}
+\pause 
+\vfill 
+\textbf{Remark.} An \textit{if-and-only-if} proof consists of two \textit{if-then} proofs. Each uses the same \textit{if-then} template (and same color-scheme) as in Group Exercises \#1 and \#2.   Note that some green rows were skipped (as there was no definition to unravel for $x=0$).
+\end{frame}
+
+\begin{frame}{Group exercise \#4: Solution}
+\footnotesize 
+\textbf{Proposition.}
+An integer is odd if and only if it is the sum of two consecutive integers.
+ 
+\textbf{Proof.} We decompose the \textit{if-and-only-if} statement into two \textit{if-then} statements.
+
+\begin{itemize}
+\item [(a)]  \hlorange{We show that if $x$ is the sum of two consecutive integers, then $x$ is an odd integer.} \hlblue{Let $x$ be the sum of two consecutive integers.}  \hlgreen{So there is an integer $a$ such that $x= a + (a+1)$.} \hlred{So $x=2a+1$}  \hlgreen{Hence, there is an integer $a$ such that $x = 2a+1$.} \hlblue{Hence, $x$ is an odd integer.}  	
+\item[(b)] \hlorange{We show that if $x$ is an odd integer, then $x$ is the sum of two consecutive integers.} \hlblue{Let $x$ be an odd integer.}  \hlgreen{Then by definition of \textit{odd}, there is an integer $a$ such that $x=2a+1$.}  \hlred{So we have $x=2a+1 = a + (a+1)$.}    \hlblue{Hence $x$ is the sum of two consecutive integers.}
+\end{itemize}
+
+\pause 
+\vfill 
+\textbf{Remark.} An \textit{if-and-only-if} proof consists of two \textit{if-then} proofs. Each uses the same \textit{if-then} template (and same color-scheme) as in Group Exercises \#1 and \#2. 
+\end{frame}
+
+
+
+\end{document}
