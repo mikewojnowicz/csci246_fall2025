@@ -1,0 +1,276 @@
+\documentclass[10pt]{beamer}
+
+%%%
+% PREAMBLE FOR THIS DOC 
+%%%
+%https://tex.stackexchange.com/questions/68821/is-it-possible-to-create-a-latex-preamble-header
+\usepackage{/Users/miw267/Repos/csci246_spring2025/slides/preambles/beamer_preamble_for_CSCI246}
+
+
+
+%%% TRY TO RESHOW TOC AT EACH SECTION START (with current section highlighted)
+% Reference: https://tex.stackexchange.com/questions/280436/how-to-highlight-a-specific-section-in-beamer-toc
+\newcommand\tocforsect[2]{%
+  \begingroup
+  \edef\safesection{\thesection}
+  \setcounter{section}{#1}
+  \tableofcontents[#2,currentsection]
+  \setcounter{section}{\safesection}
+  \endgroup
+}
+
+
+%%%% HERES HOW TO DO IT CORRECTLY
+% FIRST IN .STY FILE, DO
+%\usetheme[sectionpage=none]{metropolis}
+% THEN AT EACH SECTION DO
+%\begin{frame}{Outline}
+%  \tableofcontents[currentsection]	
+%\end{frame}
+
+
+
+%\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{footline}[frame number]{}
+
+
+%%%
+% DOCUMENT
+%%%
+
+\begin{document}
+
+%\maketitle
+
+%% Title page frame
+%\begin{frame}
+%    \titlepage 
+%\end{frame}
+
+
+
+
+
+\title{Friday 08/29/2025: Counterexample}
+\author{CSCI 246: Discrete Structures}
+\date{Textbook reference: Sec. 6, Scheinerman}
+
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+
+\begin{frame}
+
+
+\begin{mygreenbox}[title=Quiz Set up]
+\begin{itemize}
+\item \textbf{Sheet of paper}: Please bring your own sheet of paper to class each day for quizzes if possible. However, if you don't have any, you are welcome to take a blank sheet of paper from the stack in the front of the room.
+\item \textbf{Write your last name on the back}: Please write your first and last name on the front of the page where you will do your work.  Then, on the BACK of the page, please write your last name in large letters. This will help us return the graded quizzes efficiently.
+\item \textbf{Rules of conduct}: For all quizzes in the course, you should use only paper and pencil.  Please close your computers and textbooks, and put away your cellphones.     
+\end{itemize}
+\end{mygreenbox}
+
+\vspace{-.2cm}
+
+
+\begin{myyellowbox}[title=Today's Agenda]
+\begin{itemize}
+	\item Weekly quiz (20 mins)
+	\item Group exercises ($\approx$ 15 mins)	
+	\item Review group exercises ($\approx$ 15 mins)
+\end{itemize}
+
+\end{myyellowbox}
+
+
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+
+ \begin{myredbox}[title=Weekly Quiz] 
+\begin{enumerate}
+	\item  \textit{(Sec. 3 -- Definition.)}  State whether each of the following is true or false; use Definition 3.2 to justify your answers: (a) $3 \mid 100$, (b) $-3 \mid 3$, (c) $0 \mid 4$, (d) $4 \mid 0$.
+	\item \textit{(Sec. 4 -- Theorem.)} Consider these two statements: (i) If A, then B, (ii) If (not B), then (not A).  Are these two statements identical, or not? Justify your answer through an argument using truth tables.
+	\item \textit{(Sec. 5 -- Proof.)} Prove the following statement: \\ \textit{Let $x$ be an integer.  Then $x$ is even if and only if $x+1$ is odd.}
+\end{enumerate}
+\end{myredbox}
+
+\vfill 
+\begin{mygreenbox}[title=Reference Material: Scheinerman Definition 3.2] Let $a$ and $b$ be integers.  We say $a$ is \textit{divisible} by $b$, written $b \mid a$, provided there is an integer $c$ such that $bc=a$. 	
+\end{mygreenbox}
+
+\end{frame}
+
+
+
+%\begin{frame}{Observation on Sec. 5 (Proofs) reading quiz}
+%
+%\begin{myyellowbox}[title=\textbf{Observation}] 
+%A number of students wrote out expressions that look something like
+%\[ 2|x + 2|y = 2|z\]
+%\end{myyellowbox}
+%
+%\begin{myredbox}[title=\textbf{Warning}] 
+%This expression has no meaning.    Note from the definition of divisibility (see below) that $2|x$ is itself \textit{already} an equation.  The notation $2|x$  \textit{means} that there is an integer $a$ such that $2a=x$.	
+%\end{myredbox}
+%
+%
+%\vfill 
+%\begin{mydef}[title=Definition (\textbf{Divisible})]
+%Let $a$ and $b$ be integers.  We say that $a$ is \textit{divisible} by $b$ (notated as $b|a$) provided there is an integer $c$ such that $bc=a$.  
+%\end{mydef}
+%
+%\end{frame}
+
+
+\begin{frame}{Random group assignments}
+\footnotesize
+\begin{columns}
+\begin{column}{0.33\textwidth}
+Aaron Christensen: 18 \\ 
+Aidan Sinclair: 4 \\ 
+Bennett Dijkstra: 8 \\ 
+Brendan Kelly: 12 \\ 
+Buggy Garza: 12 \\ 
+Cedric Jefferson: 10 \\ 
+Conner Brost: 3 \\ 
+Connor Graville: 14 \\ 
+David Knauert: 7 \\ 
+David Oswald: 1 \\ 
+Elias Martin: 10 \\ 
+Ericson O'Guinn: 1 \\ 
+Erik Halverson: 17 \\ 
+Francis Bush: 15 \\ 
+Garrett Miller: 14 \\ 
+George Cutler: 6 \\ 
+Georgia Franks: 5 \\ 
+Gregor Schmidt: 13 \\\end{column}
+\begin{column}{0.33\textwidth}
+Hakyla Riggs: 4 \\ 
+Izayah Abayomi: 13 \\ 
+Jacob Ketola: 2 \\ 
+Jacob Ruiz: 16 \\ 
+Jaden Hampton: 9 \\ 
+Jeremy Ness: 17 \\ 
+Jonah Day: 8 \\ 
+Karter Gress: 8 \\ 
+Kyle Hoerner: 11 \\ 
+Landry Clarke: 9 \\ 
+Leon BirdHat: 4 \\ 
+Lillian Ziegler: 7 \\ 
+Matthew Rau: 2 \\ 
+Matyas Kari: 5 \\ 
+Micah Miller: 6 \\ 
+Michael Pitman: 11 \\\end{column}
+\begin{column}{0.33\textwidth}
+Nathan Campbell: 1 \\ 
+Nathan Hooley: 5 \\ 
+Nicholas Rugani: 3 \\ 
+Noah Andersson: 13 \\ 
+Olivia Greuter: 16 \\ 
+Peter Van Vleet: 15 \\ 
+Pierce Dotson: 10 \\ 
+Quinn Carlson: 9 \\ 
+Ridley Christoferson: 14 \\ 
+Riley Smith: 17 \\ 
+Sierra Holleman: 16 \\ 
+Tanner Gramps: 2 \\ 
+Timothy True: 11 \\ 
+Titus Sykes: 3 \\ 
+Trey Randall: 12 \\ 
+William Grant: 6 \\ 
+William Sheldon: 7 \\ 
+Zachary Reller: 15 \\\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Group exercises}
+\begin{enumerate}
+	\item Disprove: If $a$ and $b$ are integers with $a|b$, then $a \leq b$.
+	\item Disprove: If $p$ and $q$ are prime, then $p+q$ is composite.
+	\item What does it mean for an if-and-only-if statement to be false? What properties should a counterexample for an if-and-only-if statement have?
+	\item Disprove: An integer $x$ is positive if and only if $x+1$ is positive.
+\end{enumerate}
+
+%\vfill  \vfill 
+%(Optional.) If you have extra time, you might try these for extra practice:
+%\vspace{-0.5cm}
+%\begin{enumerate}
+%	\item[a.] Disprove: If $a$,$b$, and $c$ are positive integers with $a|bc$, then $a|b$ or $a|c$.
+%	\item[b.] Disprove: If $p$ is prime, then $2^p-1$ is also prime.
+%\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}{Group exercise \#1: Solution}
+
+\textbf{Problem.} Disprove: If $a$ and $b$ are integers with $a|b$, then $a \leq b$.
+\vfill 
+\pause 
+\textbf{Solution.} Let $a=5$ and $b=-5$. We will show that for this choice of $a$ and $b$, the hypothesis holds (i.e. $a|b$), but the conclusion doesn't (i.e. $a>b$).  By definition of divisibility, $a|b$ means that there is an integer $c$ such that $ac =b$. In this case, we need to show that there is an integer $c$ such that  $5c=-5$.  Indeed, the equation holds for $c=-1$.  Therefore, $b|a$, and the hypothesis holds.  However, clearly $a>b$, and so the conclusion fails. 
+%\vfill 
+%\textbf{Solution (shorter).} Let $a=5$ and $b=-5$. We will show that the hypothesis holds (i.e. $5|-5$), but the conclusion doesn't (i.e. $5>-5$).  To verify the hypothesis $5|-5$, note that there is an integer $c=-1$ such that  $5c=-5$.  We immediately see that $5>-5$, and so the conclusion fails.
+%\vfill 
+%\textbf{Remark.} In here and the following solutions , I provide longer solutions to clarify the logic for students who are struggling. However, in practice, feel free to provide shorter solutions, such as the one above.
+\end{frame}
+
+
+\begin{frame}{Group exercise \#2: Solution}
+
+\textbf{Problem.} Disprove: If $p$ and $q$ are prime, then $p+q$ is composite. \pause 
+% 
+\vspace{-.1cm}
+%
+\begin{mygreenbox}[title=Reference: Scheinerman Def. 3.5]
+An integer $s$ is called \textbf{prime} provided that $s>1$ and the only positive divisors of $s$ are $1$ and $s$. 
+\end{mygreenbox}
+ %  
+\begin{mygreenbox}[title=Reference: Scheinerman Def. 3.6]
+A positive integer $a$ is called \textbf{composite} provided that there is an integer $b$  such that $1<b<a$ and $b \mid a$. 
+\end{mygreenbox}
+%
+\vspace{-.2cm}
+%
+\pause 
+\textbf{Solution.}  Let $p=2$, $q=3$, and $r=p+q=5$.  We will show that for the counterexample, the hypothesis holds (i.e. $2$ and $3$ are prime), but the conclusion doesn't (i.e. $r=2 + 3 = 5$ is not composite). We know that $p=2$ is prime by the definition of prime below, since have that $2>1$ and its only positive divisors are $2$ and $1$.  A similar statement shows that $q$ is prime.  Hence, $p$ and $q$ are prime, and the hypothesis holds.  Moreover, $r=p+q$ is prime, and therefore not composite, and so the conclusion fails.
+
+
+   
+\end{frame}
+
+
+\begin{frame}{Group exercise \#3: Solution}
+
+\textbf{Problem.} What does it mean for an if-and-only-if statement to be false? What properties should a counterexample for an if-and-only-if statement have?
+\vfill 
+
+\textbf{Solution.} Recall from the group exercises of Sec. 4 (Theorems) that $A \iff B$ is identical to $(A \implies B) \, \texttt{and} \, (B \implies A)$.  Hence, we can show that $A \iff B$ fails by showing that either $A \implies B$ fails or $B \implies A$ fails.
+\vfill 
+\pause 
+\textbf{Remark.} We will encounter this strategy again when we do a group exercise on DeMorgan's law in Sec. 7, Boolean Algebra.
+\end{frame}
+
+\begin{frame}{Group exercise \#4: Solution}
+
+\textbf{Problem.} An integer $x$ is positive if and only if $x+1$ is positive.
+\pause 
+\vfill 
+\textbf{Recall.} As discussed in group exercise \#3, we can show that $A \iff B$ fails by showing that $B \implies A$ fails OR by showing that $A \implies B$ fails. 
+\vfill 
+\pause 
+\textbf{Solution.}  Let $A$ be the proposition that an integer $x$ is positive, and $B$ be the proposition that $x+1$ is positive.  We show that $A \iff B$ fails by showing that $B \implies A$ fails.   That is, we show that there exists a case where $B$ is true, but $A$ is false.  Take $x=0$. Then $B$ is true (since $x+1=1$ is positive), but $A$ is false (since $x=0$ is not positive).   
+\end{frame}
+
+
+
+
+\end{document}
